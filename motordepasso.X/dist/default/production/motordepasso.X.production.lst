@@ -1,7 +1,7 @@
 
 
 Microchip Technology PIC LITE Macro Assembler V2.00 build -1524193055 
-                                                                                               Wed Jun 02 15:29:45 2021
+                                                                                               Wed Jun 02 16:19:46 2021
 
 Microchip Technology Omniscient Code Generator v2.00 (Free mode) build 20180527130849
      1  0000                     
@@ -770,671 +770,1096 @@ Microchip Technology Omniscient Code Generator v2.00 (Free mode) build 201805271
    708                           EECON1 equ 018Ch ;# 
    709  018C                     # 3546 "C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic16f887.h"
    710                           EECON2 equ 018Dh ;# 
-   711  018D                     	FNCALL	_main,_motorpasso
-   712                           	FNCALL	_main,_motorpasso_init
-   713                           	FNCALL	_motorpasso,_delay
-   714                           	FNROOT	_main
-   715                           	global	_passos
-   716                           psect	idataCOMMON,class=CODE,space=0,delta=2,noexec
-   717                           global __pidataCOMMON
-   718                           __pidataCOMMON:
-   719  076F                     	file	"motorpasso.c"
-   720                           	line	19
-   721                           
-   722                           ;initializer for _numpassos
-   723                           	retlw	04h
-   724  076F  3404               psect	idataBANK0,class=CODE,space=0,delta=2,noexec
-   725                           global __pidataBANK0
-   726                           __pidataBANK0:
-   727  0770                     	line	17
+   711  018D                     	FNCALL	_main,_motorantpasso
+   712                           	FNCALL	_main,_motorpasso
+   713                           	FNCALL	_main,_motorpasso_init
+   714                           	FNCALL	_motorpasso,_delay
+   715                           	FNCALL	_motorantpasso,_delay
+   716                           	FNROOT	_main
+   717                           	global	_passo
+   718                           	global	_passos
+   719                           psect	idataCOMMON,class=CODE,space=0,delta=2,noexec
+   720                           global __pidataCOMMON
+   721                           __pidataCOMMON:
+   722  06CE                     	file	"motorpasso.c"
+   723                           	line	45
+   724                           
+   725                           ;initializer for _qtdpassos
+   726                           	retlw	04h
+   727  06CE  3404               	line	30
    728                           
-   729                           ;initializer for _passos
-   730                           	retlw	040h
-   731  0770  3440               	retlw	080h
-   732  0771  3480               	retlw	010h
-   733  0772  3410               	retlw	020h
-   734  0773  3420               	global	_passoatual
-   735                           	global	_PORTD
-   736                           _PORTD	set	0x8
-   737  0008                     	global	_PORTDbits
-   738                           _PORTDbits	set	0x8
-   739  0008                     	global	_TRISDbits
-   740                           _TRISDbits	set	0x88
-   741  0088                     ; #config settings
-   742                           global __CFG_FOSC$INTRC_NOCLKOUT
-   743                           __CFG_FOSC$INTRC_NOCLKOUT equ 0x0
-   744  0000                     global __CFG_WDTE$OFF
-   745                           __CFG_WDTE$OFF equ 0x0
-   746  0000                     global __CFG_PWRTE$OFF
-   747                           __CFG_PWRTE$OFF equ 0x0
-   748  0000                     global __CFG_MCLRE$OFF
-   749                           __CFG_MCLRE$OFF equ 0x0
-   750  0000                     global __CFG_CP$OFF
-   751                           __CFG_CP$OFF equ 0x0
-   752  0000                     global __CFG_CPD$OFF
-   753                           __CFG_CPD$OFF equ 0x0
-   754  0000                     global __CFG_BOREN$OFF
-   755                           __CFG_BOREN$OFF equ 0x0
-   756  0000                     global __CFG_IESO$OFF
-   757                           __CFG_IESO$OFF equ 0x0
-   758  0000                     global __CFG_FCMEN$OFF
-   759                           __CFG_FCMEN$OFF equ 0x0
-   760  0000                     global __CFG_LVP$OFF
-   761                           __CFG_LVP$OFF equ 0x0
-   762  0000                     global __CFG_BOR4V$BOR40V
-   763                           __CFG_BOR4V$BOR40V equ 0x0
-   764  0000                     global __CFG_WRT$OFF
-   765                           __CFG_WRT$OFF equ 0x0
-   766  0000                     	file	"C:\Users\20185070\AppData\Local\Temp\sels."
-   767                           	line	#
-   768                           psect cinit,class=CODE,delta=2
-   769                           global start_initialization
-   770                           start_initialization:
-   771  07DC                     
-   772                           global __initialization
-   773                           __initialization:
-   774  07DC                     psect	bssCOMMON,class=COMMON,space=1,noexec
-   775                           global __pbssCOMMON
-   776                           __pbssCOMMON:
-   777  0078                     _passoatual:
-   778  0078                            ds      2
-   779  0078                     
-   780                           psect	dataCOMMON,class=COMMON,space=1,noexec
-   781                           global __pdataCOMMON
-   782                           __pdataCOMMON:
-   783  007A                     	file	"motorpasso.c"
-   784                           	line	19
-   785                           _numpassos:
-   786  007A                            ds      1
-   787  007A                     
-   788                           psect	dataBANK0,class=BANK0,space=1,noexec
-   789                           global __pdataBANK0
-   790                           __pdataBANK0:
-   791  0020                     	file	"motorpasso.c"
-   792                           	line	17
-   793                           _passos:
-   794  0020                            ds      4
-   795  0020                     
-   796                           	file	"C:\Users\20185070\AppData\Local\Temp\sels."
-   797                           	line	#
-   798                           ; Initialize objects allocated to BANK0
-   799                           	global __pidataBANK0
-   800                           psect cinit,class=CODE,delta=2,merge=1
-   801                           	fcall	__pidataBANK0+0		;fetch initializer
-   802  07DC  120A  118A  2770  120A  118A  	movwf	__pdataBANK0+0&07fh		
-   803  07E1  00A0               	fcall	__pidataBANK0+1		;fetch initializer
-   804  07E2  120A  118A  2771  120A  118A  	movwf	__pdataBANK0+1&07fh		
-   805  07E7  00A1               	fcall	__pidataBANK0+2		;fetch initializer
-   806  07E8  120A  118A  2772  120A  118A  	movwf	__pdataBANK0+2&07fh		
-   807  07ED  00A2               	fcall	__pidataBANK0+3		;fetch initializer
-   808  07EE  120A  118A  2773  120A  118A  	movwf	__pdataBANK0+3&07fh		
-   809  07F3  00A3               ; Initialize objects allocated to COMMON
-   810                           	global __pidataCOMMON
-   811                           psect cinit,class=CODE,delta=2,merge=1
-   812                           	fcall	__pidataCOMMON+0		;fetch initializer
-   813  07F4  120A  118A  276F  120A  118A  	movwf	__pdataCOMMON+0&07fh		
-   814  07F9  00FA               	line	#
-   815                           ; Clear objects allocated to COMMON
-   816                           psect cinit,class=CODE,delta=2,merge=1
-   817                           	clrf	((__pbssCOMMON)+0)&07Fh
-   818  07FA  01F8               	clrf	((__pbssCOMMON)+1)&07Fh
-   819  07FB  01F9               psect cinit,class=CODE,delta=2,merge=1
-   820                           global end_of_initialization,__end_of__initialization
-   821                           
-   822                           ;End of C runtime variable initialization code
-   823                           
-   824                           end_of_initialization:
-   825  07FC                     __end_of__initialization:
-   826  07FC                     clrf status
-   827  07FC  0183               ljmp _main	;jump to C main() function
-   828  07FD  120A  118A  2F98   psect	cstackCOMMON,class=COMMON,space=1,noexec
-   829                           global __pcstackCOMMON
-   830                           __pcstackCOMMON:
-   831  0070                     ?_motorpasso_init:	; 1 bytes @ 0x0
-   832  0070                     ??_motorpasso_init:	; 1 bytes @ 0x0
-   833  0070                     ?_delay:	; 1 bytes @ 0x0
-   834  0070                     ?_main:	; 1 bytes @ 0x0
-   835  0070                     	global	delay@t
-   836                           delay@t:	; 2 bytes @ 0x0
-   837  0070                     	ds	2
-   838  0070                     ??_delay:	; 1 bytes @ 0x2
-   839  0072                     	ds	1
-   840  0072                     ?_motorpasso:	; 1 bytes @ 0x3
-   841  0073                     	global	motorpasso@numpassos
-   842                           motorpasso@numpassos:	; 2 bytes @ 0x3
-   843  0073                     	ds	2
-   844  0073                     	global	motorpasso@t
-   845                           motorpasso@t:	; 2 bytes @ 0x5
-   846  0075                     	ds	2
-   847  0075                     ??_motorpasso:	; 1 bytes @ 0x7
-   848  0077                     	ds	1
-   849  0077                     ??_main:	; 1 bytes @ 0x8
-   850  0078                     ;!
-   851                           ;!Data Sizes:
-   852                           ;!    Strings     0
-   853                           ;!    Constant    0
-   854                           ;!    Data        5
-   855                           ;!    BSS         2
-   856                           ;!    Persistent  0
-   857                           ;!    Stack       0
-   858                           ;!
-   859                           ;!Auto Spaces:
-   860                           ;!    Space          Size  Autos    Used
-   861                           ;!    COMMON           14      8      11
-   862                           ;!    BANK0            80      0       4
-   863                           ;!    BANK1            80      0       0
-   864                           ;!    BANK3            96      0       0
-   865                           ;!    BANK2            96      0       0
-   866                           
-   867                           ;!
-   868                           ;!Pointer List with Targets:
-   869                           ;!
-   870                           ;!    None.
-   871                           
-   872                           
-   873                           ;!
-   874                           ;!Critical Paths under _main in COMMON
-   875                           ;!
-   876                           ;!    _main->_motorpasso
-   877                           ;!    _motorpasso->_delay
-   878                           ;!
-   879                           ;!Critical Paths under _main in BANK0
-   880                           ;!
-   881                           ;!    None.
-   882                           ;!
-   883                           ;!Critical Paths under _main in BANK1
-   884                           ;!
-   885                           ;!    None.
-   886                           ;!
-   887                           ;!Critical Paths under _main in BANK3
-   888                           ;!
-   889                           ;!    None.
-   890                           ;!
-   891                           ;!Critical Paths under _main in BANK2
-   892                           ;!
-   893                           ;!    None.
-   894                           
-   895 ;;
-   896 ;;Main: autosize = 0, tempsize = 0, incstack = 0, save=0
-   897 ;;
-   898                           
-   899                           ;!
-   900                           ;!Call Graph Tables:
-   901                           ;!
-   902                           ;! ---------------------------------------------------------------------------------
-   903                           ;! (Depth) Function   	        Calls       Base Space   Used Autos Params    Refs
-   904                           ;! ---------------------------------------------------------------------------------
-   905                           ;! (0) _main                                                 0     0      0     295
-   906                           ;!                         _motorpasso
-   907                           ;!                    _motorpasso_init
-   908                           ;! ---------------------------------------------------------------------------------
-   909                           ;! (1) _motorpasso_init                                      0     0      0       0
-   910                           ;! ---------------------------------------------------------------------------------
-   911                           ;! (1) _motorpasso                                           5     1      4     295
-   912                           ;!                                              3 COMMON     5     1      4
-   913                           ;!                              _delay
-   914                           ;! ---------------------------------------------------------------------------------
-   915                           ;! (2) _delay                                                3     1      2      99
-   916                           ;!                                              0 COMMON     3     1      2
-   917                           ;! ---------------------------------------------------------------------------------
-   918                           ;! Estimated maximum stack depth 2
-   919                           ;! ---------------------------------------------------------------------------------
-   920                           ;!
-   921                           ;! Call Graph Graphs:
-   922                           ;!
-   923                           ;! _main (ROOT)
-   924                           ;!   _motorpasso
-   925                           ;!     _delay
-   926                           ;!   _motorpasso_init
-   927                           ;!
-   928                           
-   929                           ;! Address spaces:
-   930                           
-   931                           ;!Name               Size   Autos  Total    Cost      Usage
-   932                           ;!BANK3               60      0       0       9        0.0%
-   933                           ;!BITBANK3            60      0       0       8        0.0%
-   934                           ;!SFR3                 0      0       0       4        0.0%
-   935                           ;!BITSFR3              0      0       0       4        0.0%
-   936                           ;!BANK2               60      0       0      11        0.0%
-   937                           ;!BITBANK2            60      0       0      10        0.0%
-   938                           ;!SFR2                 0      0       0       5        0.0%
-   939                           ;!BITSFR2              0      0       0       5        0.0%
-   940                           ;!BANK1               50      0       0       7        0.0%
-   941                           ;!BITBANK1            50      0       0       6        0.0%
-   942                           ;!SFR1                 0      0       0       2        0.0%
-   943                           ;!BITSFR1              0      0       0       2        0.0%
-   944                           ;!BANK0               50      0       4       5        5.0%
-   945                           ;!BITBANK0            50      0       0       4        0.0%
-   946                           ;!SFR0                 0      0       0       1        0.0%
-   947                           ;!BITSFR0              0      0       0       1        0.0%
-   948                           ;!COMMON               E      8       B       1       78.6%
-   949                           ;!BITCOMMON            E      0       0       0        0.0%
-   950                           ;!CODE                 0      0       0       0        0.0%
-   951                           ;!DATA                 0      0       F      12        0.0%
-   952                           ;!ABS                  0      0       F       3        0.0%
-   953                           ;!NULL                 0      0       0       0        0.0%
-   954                           ;!STACK                0      0       0       2        0.0%
-   955                           ;!EEDATA             100      0       0       0        0.0%
-   956                           
-   957                           	global	_main
-   958                           
-   959 ;; *************** function _main *****************
-   960 ;; Defined at:
-   961 ;;		line 6 in file "main.c"
-   962 ;; Parameters:    Size  Location     Type
-   963 ;;		None
-   964 ;; Auto vars:     Size  Location     Type
-   965 ;;		None
-   966 ;; Return value:  Size  Location     Type
-   967 ;;                  1    wreg      void 
-   968 ;; Registers used:
-   969 ;;		wreg, fsr0l, fsr0h, status,2, status,0, pclath, cstack
-   970 ;; Tracked objects:
-   971 ;;		On entry : B00/0
-   972 ;;		On exit  : 0/0
-   973 ;;		Unchanged: 0/0
-   974 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
-   975 ;;      Params:         0       0       0       0       0
-   976 ;;      Locals:         0       0       0       0       0
-   977 ;;      Temps:          0       0       0       0       0
-   978 ;;      Totals:         0       0       0       0       0
-   979 ;;Total ram usage:        0 bytes
-   980 ;; Hardware stack levels required when called:    2
-   981 ;; This function calls:
-   982 ;;		_motorpasso
-   983 ;;		_motorpasso_init
-   984 ;; This function is called by:
-   985 ;;		Startup code after reset
-   986 ;; This function uses a non-reentrant model
-   987 ;;
-   988                           psect	maintext,global,class=CODE,delta=2,split=1,group=0
-   989                           	file	"main.c"
-   990                           	line	6
-   991                           global __pmaintext
-   992                           __pmaintext:	;psect for function _main
-   993  0798                     psect	maintext
-   994                           	file	"main.c"
-   995                           	line	6
-   996                           	global	__size_of_main
-   997                           	__size_of_main	equ	__end_of_main-_main
-   998  0018                     	
-   999                           _main:	
-  1000  0798                     ;incstack = 0
-  1001                           	opt	stack 6
-  1002                           ; Regs used in _main: [wreg-fsr0h+status,2+status,0+pclath+cstack]
-  1003                           	line	8
-  1004                           	
-  1005                           l654:	
-  1006  0798                     ;main.c: 8:     motorpasso_init();
-  1007                           	fcall	_motorpasso_init
-  1008  0798  120A  118A  2774  120A  118A  	goto	l656
-  1009  079D  2F9E               	line	10
-  1010                           ;main.c: 10:     while( 1 )
-  1011                           	
-  1012                           l17:	
-  1013  079E                     	line	12
-  1014                           	
-  1015                           l656:	
-  1016  079E                     ;main.c: 11:     {;main.c: 12:         motorpasso(48, 100);
-  1017                           	movlw	030h
-  1018  079E  3030               	movwf	(motorpasso@numpassos)
-  1019  079F  00F3               	movlw	0
-  1020  07A0  3000               	movwf	((motorpasso@numpassos))+1
-  1021  07A1  00F4               	movlw	064h
-  1022  07A2  3064               	movwf	(motorpasso@t)
-  1023  07A3  00F5               	movlw	0
-  1024  07A4  3000               	movwf	((motorpasso@t))+1
-  1025  07A5  00F6               	fcall	_motorpasso
-  1026  07A6  120A  118A  27B0  120A  118A  	goto	l656
-  1027  07AB  2F9E               	line	13
-  1028                           ;main.c: 13:     }
-  1029                           	
-  1030                           l18:	
-  1031  07AC                     	goto	l656
-  1032  07AC  2F9E               	
-  1033                           l19:	
-  1034  07AD                     	line	15
-  1035                           ;main.c: 14:     return;
-  1036                           	
-  1037                           l20:	
-  1038  07AD                     	global	start
-  1039                           	ljmp	start
-  1040  07AD  120A  118A  2800   	opt stack 0
-  1041                           GLOBAL	__end_of_main
-  1042                           	__end_of_main:
-  1043  07B0                     	signat	_main,89
-  1044                           	global	_motorpasso_init
+   729                           ;initializer for _numpassos
+   730                           	retlw	04h
+   731  06CF  3404               psect	idataBANK0,class=CODE,space=0,delta=2,noexec
+   732                           global __pidataBANK0
+   733                           __pidataBANK0:
+   734  06D0                     	line	42
+   735                           
+   736                           ;initializer for _passo
+   737                           	retlw	020h
+   738  06D0  3420               	retlw	010h
+   739  06D1  3410               	retlw	080h
+   740  06D2  3480               	retlw	040h
+   741  06D3  3440               	line	27
+   742                           
+   743                           ;initializer for _passos
+   744                           	retlw	040h
+   745  06D4  3440               	retlw	080h
+   746  06D5  3480               	retlw	010h
+   747  06D6  3410               	retlw	020h
+   748  06D7  3420               	global	_passoatual
+   749                           	global	_passoagora
+   750                           	global	_PORTD
+   751                           _PORTD	set	0x8
+   752  0008                     	global	_PORTDbits
+   753                           _PORTDbits	set	0x8
+   754  0008                     	global	_TRISDbits
+   755                           _TRISDbits	set	0x88
+   756  0088                     ; #config settings
+   757                           global __CFG_FOSC$INTRC_NOCLKOUT
+   758                           __CFG_FOSC$INTRC_NOCLKOUT equ 0x0
+   759  0000                     global __CFG_WDTE$OFF
+   760                           __CFG_WDTE$OFF equ 0x0
+   761  0000                     global __CFG_PWRTE$OFF
+   762                           __CFG_PWRTE$OFF equ 0x0
+   763  0000                     global __CFG_MCLRE$OFF
+   764                           __CFG_MCLRE$OFF equ 0x0
+   765  0000                     global __CFG_CP$OFF
+   766                           __CFG_CP$OFF equ 0x0
+   767  0000                     global __CFG_CPD$OFF
+   768                           __CFG_CPD$OFF equ 0x0
+   769  0000                     global __CFG_BOREN$OFF
+   770                           __CFG_BOREN$OFF equ 0x0
+   771  0000                     global __CFG_IESO$OFF
+   772                           __CFG_IESO$OFF equ 0x0
+   773  0000                     global __CFG_FCMEN$OFF
+   774                           __CFG_FCMEN$OFF equ 0x0
+   775  0000                     global __CFG_LVP$OFF
+   776                           __CFG_LVP$OFF equ 0x0
+   777  0000                     global __CFG_BOR4V$BOR40V
+   778                           __CFG_BOR4V$BOR40V equ 0x0
+   779  0000                     global __CFG_WRT$OFF
+   780                           __CFG_WRT$OFF equ 0x0
+   781  0000                     	file	"C:\Users\20185070\AppData\Local\Temp\s9f4."
+   782                           	line	#
+   783                           psect cinit,class=CODE,delta=2
+   784                           global start_initialization
+   785                           start_initialization:
+   786  07DE                     
+   787                           global __initialization
+   788                           __initialization:
+   789  07DE                     psect	bssCOMMON,class=COMMON,space=1,noexec
+   790                           global __pbssCOMMON
+   791                           __pbssCOMMON:
+   792  007A                     _passoatual:
+   793  007A                            ds      2
+   794  007A                     
+   795                           psect	dataCOMMON,class=COMMON,space=1,noexec
+   796                           global __pdataCOMMON
+   797                           __pdataCOMMON:
+   798  007C                     	file	"motorpasso.c"
+   799                           	line	45
+   800                           _qtdpassos:
+   801  007C                            ds      1
+   802  007C                     
+   803                           psect	dataCOMMON
+   804                           	file	"motorpasso.c"
+   805                           	line	30
+   806                           _numpassos:
+   807  007D                            ds      1
+   808  007D                     
+   809                           psect	bssBANK0,class=BANK0,space=1,noexec
+   810                           global __pbssBANK0
+   811                           __pbssBANK0:
+   812  0028                     _passoagora:
+   813  0028                            ds      2
+   814  0028                     
+   815                           psect	dataBANK0,class=BANK0,space=1,noexec
+   816                           global __pdataBANK0
+   817                           __pdataBANK0:
+   818  0020                     	file	"motorpasso.c"
+   819                           	line	42
+   820                           _passo:
+   821  0020                            ds      4
+   822  0020                     
+   823                           psect	dataBANK0
+   824                           	file	"motorpasso.c"
+   825                           	line	27
+   826                           _passos:
+   827  0024                            ds      4
+   828  0024                     
+   829                           	file	"C:\Users\20185070\AppData\Local\Temp\s9f4."
+   830                           	line	#
+   831                           global btemp
+   832                           psect inittext,class=CODE,delta=2
+   833                           global init_fetch0,btemp
+   834                           ;	Called with low address in FSR and high address in W
+   835                           init_fetch0:
+   836  06E5                     	movf btemp,w
+   837  06E5  087E               	movwf pclath
+   838  06E6  008A               	movf btemp+1,w
+   839  06E7  087F               	movwf pc
+   840  06E8  0082               global init_ram0
+   841                           ;Called with:
+   842                           ;	high address of idata address in btemp 
+   843                           ;	low address of idata address in btemp+1 
+   844                           ;	low address of data in FSR
+   845                           ;	high address + 1 of data in btemp-1
+   846                           init_ram0:
+   847  06E9                     	fcall init_fetch0
+   848  06E9  120A  118A  26E5  120A  118A  	movwf indf,f
+   849  06EE  0080               	incf fsr,f
+   850  06EF  0A84               	movf fsr,w
+   851  06F0  0804               	xorwf btemp-1,w
+   852  06F1  067D               	btfsc status,2
+   853  06F2  1903               	retlw 0
+   854  06F3  3400               	incf btemp+1,f
+   855  06F4  0AFF               	btfsc status,2
+   856  06F5  1903               	incf btemp,f
+   857  06F6  0AFE               	goto init_ram0
+   858  06F7  2EE9               ; Initialize objects allocated to BANK0
+   859                           psect cinit,class=CODE,delta=2,merge=1
+   860                           global init_ram0, __pidataBANK0
+   861                           	bcf	status, 7	;select IRP bank0
+   862  07DE  1383               	movlw low(__pdataBANK0+8)
+   863  07DF  3028               	movwf btemp-1,f
+   864  07E0  00FD               	movlw high(__pidataBANK0)
+   865  07E1  3006               	movwf btemp,f
+   866  07E2  00FE               	movlw low(__pidataBANK0)
+   867  07E3  30D0               	movwf btemp+1,f
+   868  07E4  00FF               	movlw low(__pdataBANK0)
+   869  07E5  3020               	movwf fsr,f
+   870  07E6  0084               	fcall init_ram0
+   871  07E7  120A  118A  26E9  120A  118A  ; Initialize objects allocated to COMMON
+   872                           	global __pidataCOMMON
+   873                           psect cinit,class=CODE,delta=2,merge=1
+   874                           	fcall	__pidataCOMMON+0		;fetch initializer
+   875  07EC  120A  118A  26CE  120A  118A  	movwf	__pdataCOMMON+0&07fh		
+   876  07F1  00FC               	fcall	__pidataCOMMON+1		;fetch initializer
+   877  07F2  120A  118A  26CF  120A  118A  	movwf	__pdataCOMMON+1&07fh		
+   878  07F7  00FD               	line	#
+   879                           ; Clear objects allocated to BANK0
+   880                           psect cinit,class=CODE,delta=2,merge=1
+   881                           	clrf	((__pbssBANK0)+0)&07Fh
+   882  07F8  01A8               	clrf	((__pbssBANK0)+1)&07Fh
+   883  07F9  01A9               ; Clear objects allocated to COMMON
+   884                           psect cinit,class=CODE,delta=2,merge=1
+   885                           	clrf	((__pbssCOMMON)+0)&07Fh
+   886  07FA  01FA               	clrf	((__pbssCOMMON)+1)&07Fh
+   887  07FB  01FB               psect cinit,class=CODE,delta=2,merge=1
+   888                           global end_of_initialization,__end_of__initialization
+   889                           
+   890                           ;End of C runtime variable initialization code
+   891                           
+   892                           end_of_initialization:
+   893  07FC                     __end_of__initialization:
+   894  07FC                     clrf status
+   895  07FC  0183               ljmp _main	;jump to C main() function
+   896  07FD  120A  118A  2F6B   psect	cstackCOMMON,class=COMMON,space=1,noexec
+   897                           global __pcstackCOMMON
+   898                           __pcstackCOMMON:
+   899  0070                     ?_motorpasso_init:	; 1 bytes @ 0x0
+   900  0070                     ??_motorpasso_init:	; 1 bytes @ 0x0
+   901  0070                     ?_delay:	; 1 bytes @ 0x0
+   902  0070                     ?_main:	; 1 bytes @ 0x0
+   903  0070                     	global	delay@t
+   904                           delay@t:	; 2 bytes @ 0x0
+   905  0070                     	ds	2
+   906  0070                     ??_delay:	; 1 bytes @ 0x2
+   907  0072                     	ds	1
+   908  0072                     ?_motorpasso:	; 1 bytes @ 0x3
+   909  0073                     ?_motorantpasso:	; 1 bytes @ 0x3
+   910  0073                     	global	motorpasso@numpassos
+   911                           motorpasso@numpassos:	; 2 bytes @ 0x3
+   912  0073                     	global	motorantpasso@qtdpassos
+   913                           motorantpasso@qtdpassos:	; 2 bytes @ 0x3
+   914  0073                     	ds	2
+   915  0073                     	global	motorpasso@t
+   916                           motorpasso@t:	; 2 bytes @ 0x5
+   917  0075                     	global	motorantpasso@t
+   918                           motorantpasso@t:	; 2 bytes @ 0x5
+   919  0075                     	ds	2
+   920  0075                     ??_motorpasso:	; 1 bytes @ 0x7
+   921  0077                     ??_motorantpasso:	; 1 bytes @ 0x7
+   922  0077                     	ds	1
+   923  0077                     ??_main:	; 1 bytes @ 0x8
+   924  0078                     	global	main@estado
+   925                           main@estado:	; 2 bytes @ 0x8
+   926  0078                     	ds	2
+   927  0078                     ;!
+   928                           ;!Data Sizes:
+   929                           ;!    Strings     0
+   930                           ;!    Constant    0
+   931                           ;!    Data        10
+   932                           ;!    BSS         4
+   933                           ;!    Persistent  0
+   934                           ;!    Stack       0
+   935                           ;!
+   936                           ;!Auto Spaces:
+   937                           ;!    Space          Size  Autos    Used
+   938                           ;!    COMMON           14     10      14
+   939                           ;!    BANK0            80      0      10
+   940                           ;!    BANK1            80      0       0
+   941                           ;!    BANK3            96      0       0
+   942                           ;!    BANK2            96      0       0
+   943                           
+   944                           ;!
+   945                           ;!Pointer List with Targets:
+   946                           ;!
+   947                           ;!    None.
+   948                           
+   949                           
+   950                           ;!
+   951                           ;!Critical Paths under _main in COMMON
+   952                           ;!
+   953                           ;!    _main->_motorantpasso
+   954                           ;!    _main->_motorpasso
+   955                           ;!    _motorpasso->_delay
+   956                           ;!    _motorantpasso->_delay
+   957                           ;!
+   958                           ;!Critical Paths under _main in BANK0
+   959                           ;!
+   960                           ;!    None.
+   961                           ;!
+   962                           ;!Critical Paths under _main in BANK1
+   963                           ;!
+   964                           ;!    None.
+   965                           ;!
+   966                           ;!Critical Paths under _main in BANK3
+   967                           ;!
+   968                           ;!    None.
+   969                           ;!
+   970                           ;!Critical Paths under _main in BANK2
+   971                           ;!
+   972                           ;!    None.
+   973                           
+   974 ;;
+   975 ;;Main: autosize = 0, tempsize = 0, incstack = 0, save=0
+   976 ;;
+   977                           
+   978                           ;!
+   979                           ;!Call Graph Tables:
+   980                           ;!
+   981                           ;! ---------------------------------------------------------------------------------
+   982                           ;! (Depth) Function   	        Calls       Base Space   Used Autos Params    Refs
+   983                           ;! ---------------------------------------------------------------------------------
+   984                           ;! (0) _main                                                 2     2      0     770
+   985                           ;!                                              8 COMMON     2     2      0
+   986                           ;!                      _motorantpasso
+   987                           ;!                         _motorpasso
+   988                           ;!                    _motorpasso_init
+   989                           ;! ---------------------------------------------------------------------------------
+   990                           ;! (1) _motorpasso_init                                      0     0      0       0
+   991                           ;! ---------------------------------------------------------------------------------
+   992                           ;! (1) _motorpasso                                           5     1      4     371
+   993                           ;!                                              3 COMMON     5     1      4
+   994                           ;!                              _delay
+   995                           ;! ---------------------------------------------------------------------------------
+   996                           ;! (1) _motorantpasso                                        5     1      4     371
+   997                           ;!                                              3 COMMON     5     1      4
+   998                           ;!                              _delay
+   999                           ;! ---------------------------------------------------------------------------------
+  1000                           ;! (2) _delay                                                3     1      2     175
+  1001                           ;!                                              0 COMMON     3     1      2
+  1002                           ;! ---------------------------------------------------------------------------------
+  1003                           ;! Estimated maximum stack depth 2
+  1004                           ;! ---------------------------------------------------------------------------------
+  1005                           ;!
+  1006                           ;! Call Graph Graphs:
+  1007                           ;!
+  1008                           ;! _main (ROOT)
+  1009                           ;!   _motorantpasso
+  1010                           ;!     _delay
+  1011                           ;!   _motorpasso
+  1012                           ;!     _delay
+  1013                           ;!   _motorpasso_init
+  1014                           ;!
+  1015                           
+  1016                           ;! Address spaces:
+  1017                           
+  1018                           ;!Name               Size   Autos  Total    Cost      Usage
+  1019                           ;!BANK3               60      0       0       9        0.0%
+  1020                           ;!BITBANK3            60      0       0       8        0.0%
+  1021                           ;!SFR3                 0      0       0       4        0.0%
+  1022                           ;!BITSFR3              0      0       0       4        0.0%
+  1023                           ;!BANK2               60      0       0      11        0.0%
+  1024                           ;!BITBANK2            60      0       0      10        0.0%
+  1025                           ;!SFR2                 0      0       0       5        0.0%
+  1026                           ;!BITSFR2              0      0       0       5        0.0%
+  1027                           ;!BANK1               50      0       0       7        0.0%
+  1028                           ;!BITBANK1            50      0       0       6        0.0%
+  1029                           ;!SFR1                 0      0       0       2        0.0%
+  1030                           ;!BITSFR1              0      0       0       2        0.0%
+  1031                           ;!BANK0               50      0       A       5       12.5%
+  1032                           ;!BITBANK0            50      0       0       4        0.0%
+  1033                           ;!SFR0                 0      0       0       1        0.0%
+  1034                           ;!BITSFR0              0      0       0       1        0.0%
+  1035                           ;!COMMON               E      A       E       1      100.0%
+  1036                           ;!BITCOMMON            E      0       0       0        0.0%
+  1037                           ;!CODE                 0      0       0       0        0.0%
+  1038                           ;!DATA                 0      0      18      12        0.0%
+  1039                           ;!ABS                  0      0      18       3        0.0%
+  1040                           ;!NULL                 0      0       0       0        0.0%
+  1041                           ;!STACK                0      0       0       2        0.0%
+  1042                           ;!EEDATA             100      0       0       0        0.0%
+  1043                           
+  1044                           	global	_main
   1045                           
-  1046 ;; *************** function _motorpasso_init *****************
+  1046 ;; *************** function _main *****************
   1047 ;; Defined at:
-  1048 ;;		line 5 in file "motorpasso.c"
+  1048 ;;		line 9 in file "main.c"
   1049 ;; Parameters:    Size  Location     Type
   1050 ;;		None
   1051 ;; Auto vars:     Size  Location     Type
-  1052 ;;		None
+  1052 ;;  estado          2    8[COMMON] int 
   1053 ;; Return value:  Size  Location     Type
   1054 ;;                  1    wreg      void 
   1055 ;; Registers used:
-  1056 ;;		None
+  1056 ;;		wreg, fsr0l, fsr0h, status,2, status,0, pclath, cstack
   1057 ;; Tracked objects:
-  1058 ;;		On entry : 0/0
+  1058 ;;		On entry : B00/0
   1059 ;;		On exit  : 0/0
   1060 ;;		Unchanged: 0/0
   1061 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
   1062 ;;      Params:         0       0       0       0       0
-  1063 ;;      Locals:         0       0       0       0       0
+  1063 ;;      Locals:         2       0       0       0       0
   1064 ;;      Temps:          0       0       0       0       0
-  1065 ;;      Totals:         0       0       0       0       0
-  1066 ;;Total ram usage:        0 bytes
-  1067 ;; Hardware stack levels used:    1
+  1065 ;;      Totals:         2       0       0       0       0
+  1066 ;;Total ram usage:        2 bytes
+  1067 ;; Hardware stack levels required when called:    2
   1068 ;; This function calls:
-  1069 ;;		Nothing
-  1070 ;; This function is called by:
-  1071 ;;		_main
-  1072 ;; This function uses a non-reentrant model
-  1073 ;;
-  1074                           psect	text1,local,class=CODE,delta=2,merge=1,group=0
-  1075                           	file	"motorpasso.c"
-  1076                           	line	5
-  1077                           global __ptext1
-  1078                           __ptext1:	;psect for function _motorpasso_init
-  1079  0774                     psect	text1
-  1080                           	file	"motorpasso.c"
-  1081                           	line	5
-  1082                           	global	__size_of_motorpasso_init
-  1083                           	__size_of_motorpasso_init	equ	__end_of_motorpasso_init-_motorpasso_init
-  1084  000D                     	
-  1085                           _motorpasso_init:	
-  1086  0774                     ;incstack = 0
-  1087                           	opt	stack 7
-  1088                           ; Regs used in _motorpasso_init: []
-  1089                           	line	7
-  1090                           	
-  1091                           l622:	
-  1092  0774                     ;motorpasso.c: 7:     TRISDbits.TRISD7 = 0;
-  1093                           	bsf	status, 5	;RP0=1, select bank1
-  1094  0774  1683               	bcf	status, 6	;RP1=0, select bank1
-  1095  0775  1303               	bcf	(136)^080h,7	;volatile
-  1096  0776  1388               	line	8
-  1097                           ;motorpasso.c: 8:     TRISDbits.TRISD6 = 0;
-  1098                           	bcf	(136)^080h,6	;volatile
-  1099  0777  1308               	line	9
-  1100                           ;motorpasso.c: 9:     TRISDbits.TRISD5 = 0;
-  1101                           	bcf	(136)^080h,5	;volatile
-  1102  0778  1288               	line	10
-  1103                           ;motorpasso.c: 10:     TRISDbits.TRISD4 = 0;
-  1104                           	bcf	(136)^080h,4	;volatile
-  1105  0779  1208               	line	11
-  1106                           ;motorpasso.c: 11:     PORTDbits.RD7 =0;
-  1107                           	bcf	status, 5	;RP0=0, select bank0
-  1108  077A  1283               	bcf	status, 6	;RP1=0, select bank0
-  1109  077B  1303               	bcf	(8),7	;volatile
-  1110  077C  1388               	line	12
-  1111                           ;motorpasso.c: 12:     PORTDbits.RD6 =0;
-  1112                           	bcf	(8),6	;volatile
-  1113  077D  1308               	line	13
-  1114                           ;motorpasso.c: 13:     PORTDbits.RD5 =1;
-  1115                           	bsf	(8),5	;volatile
-  1116  077E  1688               	line	14
-  1117                           ;motorpasso.c: 14:     PORTDbits.RD4 =0;
-  1118                           	bcf	(8),4	;volatile
-  1119  077F  1208               	line	15
-  1120                           	
-  1121                           l31:	
-  1122  0780                     	return
-  1123  0780  0008               	opt stack 0
-  1124                           GLOBAL	__end_of_motorpasso_init
-  1125                           	__end_of_motorpasso_init:
-  1126  0781                     	signat	_motorpasso_init,89
-  1127                           	global	_motorpasso
-  1128                           
-  1129 ;; *************** function _motorpasso *****************
-  1130 ;; Defined at:
-  1131 ;;		line 21 in file "motorpasso.c"
-  1132 ;; Parameters:    Size  Location     Type
-  1133 ;;  numpassos       2    3[COMMON] int 
-  1134 ;;  t               2    5[COMMON] int 
-  1135 ;; Auto vars:     Size  Location     Type
-  1136 ;;		None
-  1137 ;; Return value:  Size  Location     Type
-  1138 ;;                  1    wreg      void 
-  1139 ;; Registers used:
-  1140 ;;		wreg, fsr0l, fsr0h, status,2, status,0, pclath, cstack
-  1141 ;; Tracked objects:
-  1142 ;;		On entry : 0/0
-  1143 ;;		On exit  : 0/0
-  1144 ;;		Unchanged: 0/0
-  1145 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
-  1146 ;;      Params:         4       0       0       0       0
-  1147 ;;      Locals:         0       0       0       0       0
-  1148 ;;      Temps:          1       0       0       0       0
-  1149 ;;      Totals:         5       0       0       0       0
-  1150 ;;Total ram usage:        5 bytes
-  1151 ;; Hardware stack levels used:    1
-  1152 ;; Hardware stack levels required when called:    1
-  1153 ;; This function calls:
-  1154 ;;		_delay
-  1155 ;; This function is called by:
-  1156 ;;		_main
-  1157 ;; This function uses a non-reentrant model
-  1158 ;;
-  1159                           psect	text2,local,class=CODE,delta=2,merge=1,group=0
-  1160                           	line	21
-  1161                           global __ptext2
-  1162                           __ptext2:	;psect for function _motorpasso
-  1163  07B0                     psect	text2
-  1164                           	file	"motorpasso.c"
-  1165                           	line	21
-  1166                           	global	__size_of_motorpasso
-  1167                           	__size_of_motorpasso	equ	__end_of_motorpasso-_motorpasso
-  1168  002C                     	
-  1169                           _motorpasso:	
-  1170  07B0                     ;incstack = 0
-  1171                           	opt	stack 6
-  1172                           ; Regs used in _motorpasso: [wreg-fsr0h+status,2+status,0+pclath+cstack]
-  1173                           	line	24
+  1069 ;;		_motorantpasso
+  1070 ;;		_motorpasso
+  1071 ;;		_motorpasso_init
+  1072 ;; This function is called by:
+  1073 ;;		Startup code after reset
+  1074 ;; This function uses a non-reentrant model
+  1075 ;;
+  1076                           psect	maintext,global,class=CODE,delta=2,split=1,group=0
+  1077                           	file	"main.c"
+  1078                           	line	9
+  1079                           global __pmaintext
+  1080                           __pmaintext:	;psect for function _main
+  1081  076B                     psect	maintext
+  1082                           	file	"main.c"
+  1083                           	line	9
+  1084                           	global	__size_of_main
+  1085                           	__size_of_main	equ	__end_of_main-_main
+  1086  0073                     	
+  1087                           _main:	
+  1088  076B                     ;incstack = 0
+  1089                           	opt	stack 6
+  1090                           ; Regs used in _main: [wreg-fsr0h+status,2+status,0+pclath+cstack]
+  1091                           	line	12
+  1092                           	
+  1093                           l767:	
+  1094  076B                     ;main.c: 12:     int estado = 0;
+  1095                           	clrf	(main@estado)
+  1096  076B  01F8               	clrf	(main@estado+1)
+  1097  076C  01F9               	goto	l795
+  1098  076D  2FC6               	line	14
+  1099                           ;main.c: 14:     while( 1 )
+  1100                           	
+  1101                           l21:	
+  1102  076E                     	line	16
+  1103                           ;main.c: 15:     {;main.c: 16:         switch(estado)
+  1104                           	goto	l795
+  1105  076E  2FC6               	line	18
+  1106                           ;main.c: 17:         {;main.c: 18:             case 0:
+  1107                           	
+  1108                           l23:	
+  1109  076F                     	line	19
+  1110                           	
+  1111                           l769:	
+  1112  076F                     ;main.c: 19:                 estado = 1;
+  1113                           	movlw	01h
+  1114  076F  3001               	movwf	(main@estado)
+  1115  0770  00F8               	movlw	0
+  1116  0771  3000               	movwf	((main@estado))+1
+  1117  0772  00F9               	line	20
+  1118                           ;main.c: 20:                 break;
+  1119                           	goto	l795
+  1120  0773  2FC6               	line	21
+  1121                           ;main.c: 21:             case 1:
+  1122                           	
+  1123                           l25:	
+  1124  0774                     	line	22
+  1125                           ;main.c: 22:                 if (PORTDbits.RD0 == 1)
+  1126                           	bcf	status, 5	;RP0=0, select bank0
+  1127  0774  1283               	bcf	status, 6	;RP1=0, select bank0
+  1128  0775  1303               	btfss	(8),0	;volatile
+  1129  0776  1C08               	goto	u111
+  1130  0777  2F79               	goto	u110
+  1131  0778  2F7A               u111:
+  1132  0779                     	goto	l773
+  1133  0779  2F7F               u110:
+  1134  077A                     	line	23
+  1135                           	
+  1136                           l771:	
+  1137  077A                     ;main.c: 23:                     estado = 2;
+  1138                           	movlw	02h
+  1139  077A  3002               	movwf	(main@estado)
+  1140  077B  00F8               	movlw	0
+  1141  077C  3000               	movwf	((main@estado))+1
+  1142  077D  00F9               	goto	l773
+  1143  077E  2F7F               	
+  1144                           l26:	
+  1145  077F                     	line	24
+  1146                           	
+  1147                           l773:	
+  1148  077F                     ;main.c: 24:                 if (PORTDbits.RD1 == 1)
+  1149                           	btfss	(8),1	;volatile
+  1150  077F  1C88               	goto	u121
+  1151  0780  2F82               	goto	u120
+  1152  0781  2F83               u121:
+  1153  0782                     	goto	l795
+  1154  0782  2FC6               u120:
+  1155  0783                     	line	25
+  1156                           	
+  1157                           l775:	
+  1158  0783                     ;main.c: 25:                     estado = 3;
+  1159                           	movlw	03h
+  1160  0783  3003               	movwf	(main@estado)
+  1161  0784  00F8               	movlw	0
+  1162  0785  3000               	movwf	((main@estado))+1
+  1163  0786  00F9               	goto	l795
+  1164  0787  2FC6               	
+  1165                           l27:	
+  1166  0788                     	line	26
+  1167                           ;main.c: 26:                 break;
+  1168                           	goto	l795
+  1169  0788  2FC6               	line	27
+  1170                           ;main.c: 27:             case 2:
+  1171                           	
+  1172                           l28:	
+  1173  0789                     	line	28
   1174                           	
-  1175                           l644:	
-  1176  07B0                     ;motorpasso.c: 21: void motorpasso (int numpassos, int t);motorpasso.c: 22: {;motorpasso
-                                 .c: 24:     for ( passoatual=0; passoatual<numpassos; passoatual++ )
-  1177                           	clrf	(_passoatual)
-  1178  07B0  01F8               	clrf	(_passoatual+1)
-  1179  07B1  01F9               	goto	l652
-  1180  07B2  2FCC               	
-  1181                           l41:	
-  1182  07B3                     	line	26
-  1183                           	
-  1184                           l646:	
-  1185  07B3                     ;motorpasso.c: 25:     {;motorpasso.c: 26:         PORTD = passos[passoatual % 4];
-  1186                           	movf	(_passoatual),w
-  1187  07B3  0878               	andlw	03h
-  1188  07B4  3903               	addlw	low(_passos|((0x0)<<8))&0ffh
-  1189  07B5  3E20               	movwf	fsr0
-  1190  07B6  0084               	bcf	status, 7	;select IRP bank0
-  1191  07B7  1383               	movf	indf,w
-  1192  07B8  0800               	bcf	status, 5	;RP0=0, select bank0
-  1193  07B9  1283               	bcf	status, 6	;RP1=0, select bank0
-  1194  07BA  1303               	movwf	(8)	;volatile
-  1195  07BB  0088               	line	27
-  1196                           	
-  1197                           l648:	
-  1198  07BC                     ;motorpasso.c: 27:         delay(t);
-  1199                           	movf	(motorpasso@t+1),w
-  1200  07BC  0876               	movwf	(delay@t+1)
-  1201  07BD  00F1               	movf	(motorpasso@t),w
-  1202  07BE  0875               	movwf	(delay@t)
-  1203  07BF  00F0               	fcall	_delay
-  1204  07C0  120A  118A  2781  120A  118A  	line	28
-  1205                           	
-  1206                           l650:	
-  1207  07C5                     ;motorpasso.c: 28:     }
-  1208                           	movlw	01h
-  1209  07C5  3001               	addwf	(_passoatual),f
-  1210  07C6  07F8               	skipnc
-  1211  07C7  1803               	incf	(_passoatual+1),f
-  1212  07C8  0AF9               	movlw	0
-  1213  07C9  3000               	addwf	(_passoatual+1),f
-  1214  07CA  07F9               	goto	l652
-  1215  07CB  2FCC               	
-  1216                           l40:	
-  1217  07CC                     	
-  1218                           l652:	
-  1219  07CC                     	movf	(_passoatual+1),w
-  1220  07CC  0879               	xorlw	80h
-  1221  07CD  3A80               	movwf	(??_motorpasso+0)+0
-  1222  07CE  00F7               	movf	(motorpasso@numpassos+1),w
-  1223  07CF  0874               	xorlw	80h
-  1224  07D0  3A80               	subwf	(??_motorpasso+0)+0,w
-  1225  07D1  0277               	skipz
-  1226  07D2  1D03               	goto	u45
-  1227  07D3  2FD6               	movf	(motorpasso@numpassos),w
-  1228  07D4  0873               	subwf	(_passoatual),w
-  1229  07D5  0278               u45:
-  1230  07D6                     
-  1231                           	skipc
-  1232  07D6  1C03               	goto	u41
-  1233  07D7  2FD9               	goto	u40
-  1234  07D8  2FDA               u41:
-  1235  07D9                     	goto	l646
-  1236  07D9  2FB3               u40:
-  1237  07DA                     	goto	l43
-  1238  07DA  2FDB               	
-  1239                           l42:	
-  1240  07DB                     	line	29
-  1241                           	
-  1242                           l43:	
-  1243  07DB                     	return
-  1244  07DB  0008               	opt stack 0
-  1245                           GLOBAL	__end_of_motorpasso
-  1246                           	__end_of_motorpasso:
-  1247  07DC                     	signat	_motorpasso,8313
-  1248                           	global	_delay
-  1249                           
-  1250 ;; *************** function _delay *****************
-  1251 ;; Defined at:
-  1252 ;;		line 4 in file "delay.c"
-  1253 ;; Parameters:    Size  Location     Type
-  1254 ;;  t               2    0[COMMON] unsigned int 
-  1255 ;; Auto vars:     Size  Location     Type
-  1256 ;;		None
-  1257 ;; Return value:  Size  Location     Type
-  1258 ;;                  1    wreg      void 
-  1259 ;; Registers used:
-  1260 ;;		wreg, status,2, status,0
-  1261 ;; Tracked objects:
-  1262 ;;		On entry : 0/0
-  1263 ;;		On exit  : 0/0
-  1264 ;;		Unchanged: 0/0
-  1265 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
-  1266 ;;      Params:         2       0       0       0       0
-  1267 ;;      Locals:         0       0       0       0       0
-  1268 ;;      Temps:          1       0       0       0       0
-  1269 ;;      Totals:         3       0       0       0       0
-  1270 ;;Total ram usage:        3 bytes
-  1271 ;; Hardware stack levels used:    1
-  1272 ;; This function calls:
-  1273 ;;		Nothing
-  1274 ;; This function is called by:
-  1275 ;;		_motorpasso
-  1276 ;; This function uses a non-reentrant model
-  1277 ;;
-  1278                           psect	text3,local,class=CODE,delta=2,merge=1,group=0
-  1279                           	file	"delay.c"
-  1280                           	line	4
-  1281                           global __ptext3
-  1282                           __ptext3:	;psect for function _delay
-  1283  0781                     psect	text3
-  1284                           	file	"delay.c"
-  1285                           	line	4
-  1286                           	global	__size_of_delay
-  1287                           	__size_of_delay	equ	__end_of_delay-_delay
-  1288  0017                     	
-  1289                           _delay:	
-  1290  0781                     ;incstack = 0
-  1291                           	opt	stack 6
-  1292                           ; Regs used in _delay: [wreg+status,2+status,0]
-  1293                           	line	7
-  1294                           	
-  1295                           l638:	
-  1296  0781                     ;delay.c: 4: void delay(unsigned int t );delay.c: 6: {;delay.c: 7:     while ( t )
-  1297                           	goto	l642
-  1298  0781  2F90               	
-  1299                           l6:	
-  1300  0782                     	line	9
-  1301                           	
-  1302                           l640:	
-  1303  0782                     ;delay.c: 8:     {;delay.c: 9:         _delay((unsigned long)((1)*(4000000/4000.0)));
-  1304                           	opt asmopt_push
-  1305                           opt asmopt_off
-  1306                           	movlw	199
-  1307  0782  30C7               movwf	((??_delay+0)+0),f
-  1308  0783  00F2               	u57:
-  1309  0784                     	nop2
-  1310  0784  2F85               decfsz	(??_delay+0)+0,f
-  1311  0785  0BF2               	goto	u57
-  1312  0786  2F84               	nop2
-  1313  0787  2F88               	nop2
-  1314  0788  2F89               opt asmopt_pop
-  1315                           
-  1316                           	line	10
-  1317                           ;delay.c: 10:         --t;
-  1318                           	movlw	01h
-  1319  0789  3001               	subwf	(delay@t),f
-  1320  078A  02F0               	movlw	0
-  1321  078B  3000               	skipc
-  1322  078C  1C03               	decf	(delay@t+1),f
-  1323  078D  03F1               	subwf	(delay@t+1),f
-  1324  078E  02F1               	goto	l642
-  1325  078F  2F90               	line	11
-  1326                           ;delay.c: 11:     }
-  1327                           	
-  1328                           l5:	
-  1329  0790                     	line	7
-  1330                           	
-  1331                           l642:	
-  1332  0790                     ;delay.c: 7:     while ( t )
-  1333                           	movf	((delay@t)),w
-  1334  0790  0870               iorwf	((delay@t+1)),w
-  1335  0791  0471               	btfss	status,2
-  1336  0792  1D03               	goto	u31
-  1337  0793  2F95               	goto	u30
-  1338  0794  2F96               u31:
-  1339  0795                     	goto	l640
-  1340  0795  2F82               u30:
-  1341  0796                     	goto	l8
-  1342  0796  2F97               	
-  1343                           l7:	
-  1344  0797                     	line	12
-  1345                           	
-  1346                           l8:	
-  1347  0797                     	return
-  1348  0797  0008               	opt stack 0
-  1349                           GLOBAL	__end_of_delay
-  1350                           	__end_of_delay:
-  1351  0798                     	signat	_delay,4217
-  1352                           global	___latbits
-  1353                           ___latbits	equ	2
-  1354  0002                     	global	btemp
-  1355                           	btemp set 07Eh
-  1356  007E                     
-  1357                           	DABS	1,126,2	;btemp
-  1358                           	global	wtemp0
-  1359                           	wtemp0 set btemp+0
-  1360  007E                     	end
+  1175                           l777:	
+  1176  0789                     ;main.c: 28:                 motorpasso_init();
+  1177                           	fcall	_motorpasso_init
+  1178  0789  120A  118A  26D8  120A  118A  	line	29
+  1179                           	
+  1180                           l779:	
+  1181  078E                     ;main.c: 29:                 motorpasso(48, 100);
+  1182                           	movlw	030h
+  1183  078E  3030               	movwf	(motorpasso@numpassos)
+  1184  078F  00F3               	movlw	0
+  1185  0790  3000               	movwf	((motorpasso@numpassos))+1
+  1186  0791  00F4               	movlw	064h
+  1187  0792  3064               	movwf	(motorpasso@t)
+  1188  0793  00F5               	movlw	0
+  1189  0794  3000               	movwf	((motorpasso@t))+1
+  1190  0795  00F6               	fcall	_motorpasso
+  1191  0796  120A  118A  270F  120A  118A  	line	30
+  1192                           	
+  1193                           l781:	
+  1194  079B                     ;main.c: 30:                 if (PORTDbits.RD1 ==1)
+  1195                           	bcf	status, 5	;RP0=0, select bank0
+  1196  079B  1283               	bcf	status, 6	;RP1=0, select bank0
+  1197  079C  1303               	btfss	(8),1	;volatile
+  1198  079D  1C88               	goto	u131
+  1199  079E  2FA0               	goto	u130
+  1200  079F  2FA1               u131:
+  1201  07A0                     	goto	l795
+  1202  07A0  2FC6               u130:
+  1203  07A1                     	line	31
+  1204                           	
+  1205                           l783:	
+  1206  07A1                     ;main.c: 31:                 estado = 1;
+  1207                           	movlw	01h
+  1208  07A1  3001               	movwf	(main@estado)
+  1209  07A2  00F8               	movlw	0
+  1210  07A3  3000               	movwf	((main@estado))+1
+  1211  07A4  00F9               	goto	l795
+  1212  07A5  2FC6               	
+  1213                           l29:	
+  1214  07A6                     	line	32
+  1215                           ;main.c: 32:                 break;
+  1216                           	goto	l795
+  1217  07A6  2FC6               	line	33
+  1218                           ;main.c: 33:             case 3:
+  1219                           	
+  1220                           l30:	
+  1221  07A7                     	line	34
+  1222                           	
+  1223                           l785:	
+  1224  07A7                     ;main.c: 34:                 motorpasso_init();
+  1225                           	fcall	_motorpasso_init
+  1226  07A7  120A  118A  26D8  120A  118A  	line	35
+  1227                           	
+  1228                           l787:	
+  1229  07AC                     ;main.c: 35:                 motorantpasso(48, 100);
+  1230                           	movlw	030h
+  1231  07AC  3030               	movwf	(motorantpasso@qtdpassos)
+  1232  07AD  00F3               	movlw	0
+  1233  07AE  3000               	movwf	((motorantpasso@qtdpassos))+1
+  1234  07AF  00F4               	movlw	064h
+  1235  07B0  3064               	movwf	(motorantpasso@t)
+  1236  07B1  00F5               	movlw	0
+  1237  07B2  3000               	movwf	((motorantpasso@t))+1
+  1238  07B3  00F6               	fcall	_motorantpasso
+  1239  07B4  120A  118A  273B  120A  118A  	line	36
+  1240                           	
+  1241                           l789:	
+  1242  07B9                     ;main.c: 36:                 if (PORTDbits.RD1 == 1)
+  1243                           	bcf	status, 5	;RP0=0, select bank0
+  1244  07B9  1283               	bcf	status, 6	;RP1=0, select bank0
+  1245  07BA  1303               	btfss	(8),1	;volatile
+  1246  07BB  1C88               	goto	u141
+  1247  07BC  2FBE               	goto	u140
+  1248  07BD  2FBF               u141:
+  1249  07BE                     	goto	l795
+  1250  07BE  2FC6               u140:
+  1251  07BF                     	line	37
+  1252                           	
+  1253                           l791:	
+  1254  07BF                     ;main.c: 37:                 estado = 1;
+  1255                           	movlw	01h
+  1256  07BF  3001               	movwf	(main@estado)
+  1257  07C0  00F8               	movlw	0
+  1258  07C1  3000               	movwf	((main@estado))+1
+  1259  07C2  00F9               	goto	l795
+  1260  07C3  2FC6               	
+  1261                           l31:	
+  1262  07C4                     	line	38
+  1263                           ;main.c: 38:                 break;
+  1264                           	goto	l795
+  1265  07C4  2FC6               	line	39
+  1266                           	
+  1267                           l793:	
+  1268  07C5                     ;main.c: 39:         }
+  1269                           	goto	l795
+  1270  07C5  2FC6               	
+  1271                           l22:	
+  1272  07C6                     	
+  1273                           l795:	
+  1274  07C6                     	; Switch on 2 bytes has been partitioned into a top level switch of size 1, and 1 sub-s
+                                 witches
+  1275                           ; Switch size 1, requested type "space"
+  1276                           ; Number of cases is 1, Range of values is 0 to 0
+  1277                           ; switch strategies available:
+  1278                           ; Name         Instructions Cycles
+  1279                           ; simple_byte            4     3 (average)
+  1280                           ; direct_byte           11     8 (fixed)
+  1281                           ; jumptable            260     6 (fixed)
+  1282                           ;	Chosen strategy is simple_byte
+  1283                           
+  1284                           	movf (main@estado+1),w
+  1285  07C6  0879               	opt asmopt_push
+  1286                           	opt asmopt_off
+  1287                           	xorlw	0^0	; case 0
+  1288  07C7  3A00               	skipnz
+  1289  07C8  1903               	goto	l833
+  1290  07C9  2FCB               	goto	l795
+  1291  07CA  2FC6               	opt asmopt_pop
+  1292                           	
+  1293                           l833:	
+  1294  07CB                     ; Switch size 1, requested type "space"
+  1295                           ; Number of cases is 4, Range of values is 0 to 3
+  1296                           ; switch strategies available:
+  1297                           ; Name         Instructions Cycles
+  1298                           ; simple_byte           13     7 (average)
+  1299                           ; direct_byte           20     8 (fixed)
+  1300                           ; jumptable            260     6 (fixed)
+  1301                           ;	Chosen strategy is simple_byte
+  1302                           
+  1303                           	movf (main@estado),w
+  1304  07CB  0878               	opt asmopt_push
+  1305                           	opt asmopt_off
+  1306                           	xorlw	0^0	; case 0
+  1307  07CC  3A00               	skipnz
+  1308  07CD  1903               	goto	l769
+  1309  07CE  2F6F               	xorlw	1^0	; case 1
+  1310  07CF  3A01               	skipnz
+  1311  07D0  1903               	goto	l25
+  1312  07D1  2F74               	xorlw	2^1	; case 2
+  1313  07D2  3A03               	skipnz
+  1314  07D3  1903               	goto	l777
+  1315  07D4  2F89               	xorlw	3^2	; case 3
+  1316  07D5  3A01               	skipnz
+  1317  07D6  1903               	goto	l785
+  1318  07D7  2FA7               	goto	l795
+  1319  07D8  2FC6               	opt asmopt_pop
+  1320                           
+  1321                           	
+  1322                           l24:	
+  1323  07D9                     	goto	l795
+  1324  07D9  2FC6               	line	40
+  1325                           ;main.c: 40:     }
+  1326                           	
+  1327                           l32:	
+  1328  07DA                     	goto	l795
+  1329  07DA  2FC6               	
+  1330                           l33:	
+  1331  07DB                     	line	42
+  1332                           ;main.c: 41:     return;
+  1333                           	
+  1334                           l34:	
+  1335  07DB                     	global	start
+  1336                           	ljmp	start
+  1337  07DB  120A  118A  2800   	opt stack 0
+  1338                           GLOBAL	__end_of_main
+  1339                           	__end_of_main:
+  1340  07DE                     	signat	_main,89
+  1341                           	global	_motorpasso_init
+  1342                           
+  1343 ;; *************** function _motorpasso_init *****************
+  1344 ;; Defined at:
+  1345 ;;		line 6 in file "motorpasso.c"
+  1346 ;; Parameters:    Size  Location     Type
+  1347 ;;		None
+  1348 ;; Auto vars:     Size  Location     Type
+  1349 ;;		None
+  1350 ;; Return value:  Size  Location     Type
+  1351 ;;                  1    wreg      void 
+  1352 ;; Registers used:
+  1353 ;;		None
+  1354 ;; Tracked objects:
+  1355 ;;		On entry : 0/0
+  1356 ;;		On exit  : 0/0
+  1357 ;;		Unchanged: 0/0
+  1358 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+  1359 ;;      Params:         0       0       0       0       0
+  1360 ;;      Locals:         0       0       0       0       0
+  1361 ;;      Temps:          0       0       0       0       0
+  1362 ;;      Totals:         0       0       0       0       0
+  1363 ;;Total ram usage:        0 bytes
+  1364 ;; Hardware stack levels used:    1
+  1365 ;; This function calls:
+  1366 ;;		Nothing
+  1367 ;; This function is called by:
+  1368 ;;		_main
+  1369 ;; This function uses a non-reentrant model
+  1370 ;;
+  1371                           psect	text1,local,class=CODE,delta=2,merge=1,group=0
+  1372                           	file	"motorpasso.c"
+  1373                           	line	6
+  1374                           global __ptext1
+  1375                           __ptext1:	;psect for function _motorpasso_init
+  1376  06D8                     psect	text1
+  1377                           	file	"motorpasso.c"
+  1378                           	line	6
+  1379                           	global	__size_of_motorpasso_init
+  1380                           	__size_of_motorpasso_init	equ	__end_of_motorpasso_init-_motorpasso_init
+  1381  000D                     	
+  1382                           _motorpasso_init:	
+  1383  06D8                     ;incstack = 0
+  1384                           	opt	stack 7
+  1385                           ; Regs used in _motorpasso_init: []
+  1386                           	line	8
+  1387                           	
+  1388                           l651:	
+  1389  06D8                     ;motorpasso.c: 8:     TRISDbits.TRISD7 = 0;
+  1390                           	bsf	status, 5	;RP0=1, select bank1
+  1391  06D8  1683               	bcf	status, 6	;RP1=0, select bank1
+  1392  06D9  1303               	bcf	(136)^080h,7	;volatile
+  1393  06DA  1388               	line	9
+  1394                           ;motorpasso.c: 9:     TRISDbits.TRISD6 = 0;
+  1395                           	bcf	(136)^080h,6	;volatile
+  1396  06DB  1308               	line	10
+  1397                           ;motorpasso.c: 10:     TRISDbits.TRISD5 = 0;
+  1398                           	bcf	(136)^080h,5	;volatile
+  1399  06DC  1288               	line	11
+  1400                           ;motorpasso.c: 11:     TRISDbits.TRISD4 = 0;
+  1401                           	bcf	(136)^080h,4	;volatile
+  1402  06DD  1208               	line	12
+  1403                           ;motorpasso.c: 12:     PORTDbits.RD7 =0;
+  1404                           	bcf	status, 5	;RP0=0, select bank0
+  1405  06DE  1283               	bcf	status, 6	;RP1=0, select bank0
+  1406  06DF  1303               	bcf	(8),7	;volatile
+  1407  06E0  1388               	line	13
+  1408                           ;motorpasso.c: 13:     PORTDbits.RD6 =0;
+  1409                           	bcf	(8),6	;volatile
+  1410  06E1  1308               	line	14
+  1411                           ;motorpasso.c: 14:     PORTDbits.RD5 =1;
+  1412                           	bsf	(8),5	;volatile
+  1413  06E2  1688               	line	15
+  1414                           ;motorpasso.c: 15:     PORTDbits.RD4 =0;
+  1415                           	bcf	(8),4	;volatile
+  1416  06E3  1208               	line	16
+  1417                           	
+  1418                           l45:	
+  1419  06E4                     	return
+  1420  06E4  0008               	opt stack 0
+  1421                           GLOBAL	__end_of_motorpasso_init
+  1422                           	__end_of_motorpasso_init:
+  1423  06E5                     	signat	_motorpasso_init,89
+  1424                           	global	_motorpasso
+  1425                           
+  1426 ;; *************** function _motorpasso *****************
+  1427 ;; Defined at:
+  1428 ;;		line 32 in file "motorpasso.c"
+  1429 ;; Parameters:    Size  Location     Type
+  1430 ;;  numpassos       2    3[COMMON] int 
+  1431 ;;  t               2    5[COMMON] int 
+  1432 ;; Auto vars:     Size  Location     Type
+  1433 ;;		None
+  1434 ;; Return value:  Size  Location     Type
+  1435 ;;                  1    wreg      void 
+  1436 ;; Registers used:
+  1437 ;;		wreg, fsr0l, fsr0h, status,2, status,0, pclath, cstack
+  1438 ;; Tracked objects:
+  1439 ;;		On entry : 0/0
+  1440 ;;		On exit  : 0/0
+  1441 ;;		Unchanged: 0/0
+  1442 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+  1443 ;;      Params:         4       0       0       0       0
+  1444 ;;      Locals:         0       0       0       0       0
+  1445 ;;      Temps:          1       0       0       0       0
+  1446 ;;      Totals:         5       0       0       0       0
+  1447 ;;Total ram usage:        5 bytes
+  1448 ;; Hardware stack levels used:    1
+  1449 ;; Hardware stack levels required when called:    1
+  1450 ;; This function calls:
+  1451 ;;		_delay
+  1452 ;; This function is called by:
+  1453 ;;		_main
+  1454 ;; This function uses a non-reentrant model
+  1455 ;;
+  1456                           psect	text2,local,class=CODE,delta=2,merge=1,group=0
+  1457                           	line	32
+  1458                           global __ptext2
+  1459                           __ptext2:	;psect for function _motorpasso
+  1460  070F                     psect	text2
+  1461                           	file	"motorpasso.c"
+  1462                           	line	32
+  1463                           	global	__size_of_motorpasso
+  1464                           	__size_of_motorpasso	equ	__end_of_motorpasso-_motorpasso
+  1465  002C                     	
+  1466                           _motorpasso:	
+  1467  070F                     ;incstack = 0
+  1468                           	opt	stack 6
+  1469                           ; Regs used in _motorpasso: [wreg-fsr0h+status,2+status,0+pclath+cstack]
+  1470                           	line	35
+  1471                           	
+  1472                           l747:	
+  1473  070F                     ;motorpasso.c: 32: void motorpasso (int numpassos, int t);motorpasso.c: 33: {;motorpasso
+                                 .c: 35:     for ( passoatual=0; passoatual<numpassos; passoatual++ )
+  1474                           	clrf	(_passoatual)
+  1475  070F  01FA               	clrf	(_passoatual+1)
+  1476  0710  01FB               	goto	l755
+  1477  0711  2F2B               	
+  1478                           l58:	
+  1479  0712                     	line	37
+  1480                           	
+  1481                           l749:	
+  1482  0712                     ;motorpasso.c: 36:     {;motorpasso.c: 37:         PORTD = passos[passoatual % 4];
+  1483                           	movf	(_passoatual),w
+  1484  0712  087A               	andlw	03h
+  1485  0713  3903               	addlw	low(_passos|((0x0)<<8))&0ffh
+  1486  0714  3E24               	movwf	fsr0
+  1487  0715  0084               	bcf	status, 7	;select IRP bank0
+  1488  0716  1383               	movf	indf,w
+  1489  0717  0800               	bcf	status, 5	;RP0=0, select bank0
+  1490  0718  1283               	bcf	status, 6	;RP1=0, select bank0
+  1491  0719  1303               	movwf	(8)	;volatile
+  1492  071A  0088               	line	38
+  1493                           	
+  1494                           l751:	
+  1495  071B                     ;motorpasso.c: 38:         delay(t);
+  1496                           	movf	(motorpasso@t+1),w
+  1497  071B  0876               	movwf	(delay@t+1)
+  1498  071C  00F1               	movf	(motorpasso@t),w
+  1499  071D  0875               	movwf	(delay@t)
+  1500  071E  00F0               	fcall	_delay
+  1501  071F  120A  118A  26F8  120A  118A  	line	39
+  1502                           	
+  1503                           l753:	
+  1504  0724                     ;motorpasso.c: 39:     }
+  1505                           	movlw	01h
+  1506  0724  3001               	addwf	(_passoatual),f
+  1507  0725  07FA               	skipnc
+  1508  0726  1803               	incf	(_passoatual+1),f
+  1509  0727  0AFB               	movlw	0
+  1510  0728  3000               	addwf	(_passoatual+1),f
+  1511  0729  07FB               	goto	l755
+  1512  072A  2F2B               	
+  1513                           l57:	
+  1514  072B                     	
+  1515                           l755:	
+  1516  072B                     	movf	(_passoatual+1),w
+  1517  072B  087B               	xorlw	80h
+  1518  072C  3A80               	movwf	(??_motorpasso+0)+0
+  1519  072D  00F7               	movf	(motorpasso@numpassos+1),w
+  1520  072E  0874               	xorlw	80h
+  1521  072F  3A80               	subwf	(??_motorpasso+0)+0,w
+  1522  0730  0277               	skipz
+  1523  0731  1D03               	goto	u95
+  1524  0732  2F35               	movf	(motorpasso@numpassos),w
+  1525  0733  0873               	subwf	(_passoatual),w
+  1526  0734  027A               u95:
+  1527  0735                     
+  1528                           	skipc
+  1529  0735  1C03               	goto	u91
+  1530  0736  2F38               	goto	u90
+  1531  0737  2F39               u91:
+  1532  0738                     	goto	l749
+  1533  0738  2F12               u90:
+  1534  0739                     	goto	l60
+  1535  0739  2F3A               	
+  1536                           l59:	
+  1537  073A                     	line	40
+  1538                           	
+  1539                           l60:	
+  1540  073A                     	return
+  1541  073A  0008               	opt stack 0
+  1542                           GLOBAL	__end_of_motorpasso
+  1543                           	__end_of_motorpasso:
+  1544  073B                     	signat	_motorpasso,8313
+  1545                           	global	_motorantpasso
+  1546                           
+  1547 ;; *************** function _motorantpasso *****************
+  1548 ;; Defined at:
+  1549 ;;		line 47 in file "motorpasso.c"
+  1550 ;; Parameters:    Size  Location     Type
+  1551 ;;  qtdpassos       2    3[COMMON] int 
+  1552 ;;  t               2    5[COMMON] int 
+  1553 ;; Auto vars:     Size  Location     Type
+  1554 ;;		None
+  1555 ;; Return value:  Size  Location     Type
+  1556 ;;                  1    wreg      void 
+  1557 ;; Registers used:
+  1558 ;;		wreg, fsr0l, fsr0h, status,2, status,0, pclath, cstack
+  1559 ;; Tracked objects:
+  1560 ;;		On entry : 0/0
+  1561 ;;		On exit  : 0/0
+  1562 ;;		Unchanged: 0/0
+  1563 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+  1564 ;;      Params:         4       0       0       0       0
+  1565 ;;      Locals:         0       0       0       0       0
+  1566 ;;      Temps:          1       0       0       0       0
+  1567 ;;      Totals:         5       0       0       0       0
+  1568 ;;Total ram usage:        5 bytes
+  1569 ;; Hardware stack levels used:    1
+  1570 ;; Hardware stack levels required when called:    1
+  1571 ;; This function calls:
+  1572 ;;		_delay
+  1573 ;; This function is called by:
+  1574 ;;		_main
+  1575 ;; This function uses a non-reentrant model
+  1576 ;;
+  1577                           psect	text3,local,class=CODE,delta=2,merge=1,group=0
+  1578                           	line	47
+  1579                           global __ptext3
+  1580                           __ptext3:	;psect for function _motorantpasso
+  1581  073B                     psect	text3
+  1582                           	file	"motorpasso.c"
+  1583                           	line	47
+  1584                           	global	__size_of_motorantpasso
+  1585                           	__size_of_motorantpasso	equ	__end_of_motorantpasso-_motorantpasso
+  1586  0030                     	
+  1587                           _motorantpasso:	
+  1588  073B                     ;incstack = 0
+  1589                           	opt	stack 6
+  1590                           ; Regs used in _motorantpasso: [wreg-fsr0h+status,2+status,0+pclath+cstack]
+  1591                           	line	50
+  1592                           	
+  1593                           l757:	
+  1594  073B                     ;motorpasso.c: 47: void motorantpasso (int qtdpassos, int t);motorpasso.c: 48: {;motorpa
+                                 sso.c: 50:     for ( passoagora=0; passoagora<qtdpassos; passoagora++ )
+  1595                           	bcf	status, 5	;RP0=0, select bank0
+  1596  073B  1283               	bcf	status, 6	;RP1=0, select bank0
+  1597  073C  1303               	clrf	(_passoagora)
+  1598  073D  01A8               	clrf	(_passoagora+1)
+  1599  073E  01A9               	goto	l765
+  1600  073F  2F5B               	
+  1601                           l70:	
+  1602  0740                     	line	52
+  1603                           	
+  1604                           l759:	
+  1605  0740                     ;motorpasso.c: 51:     {;motorpasso.c: 52:         PORTD = passo[passoagora % 4];
+  1606                           	bcf	status, 5	;RP0=0, select bank0
+  1607  0740  1283               	bcf	status, 6	;RP1=0, select bank0
+  1608  0741  1303               	movf	(_passoagora),w
+  1609  0742  0828               	andlw	03h
+  1610  0743  3903               	addlw	low(_passo|((0x0)<<8))&0ffh
+  1611  0744  3E20               	movwf	fsr0
+  1612  0745  0084               	bcf	status, 7	;select IRP bank0
+  1613  0746  1383               	movf	indf,w
+  1614  0747  0800               	movwf	(8)	;volatile
+  1615  0748  0088               	line	53
+  1616                           	
+  1617                           l761:	
+  1618  0749                     ;motorpasso.c: 53:         delay(t);
+  1619                           	movf	(motorantpasso@t+1),w
+  1620  0749  0876               	movwf	(delay@t+1)
+  1621  074A  00F1               	movf	(motorantpasso@t),w
+  1622  074B  0875               	movwf	(delay@t)
+  1623  074C  00F0               	fcall	_delay
+  1624  074D  120A  118A  26F8  120A  118A  	line	54
+  1625                           	
+  1626                           l763:	
+  1627  0752                     ;motorpasso.c: 54:     }
+  1628                           	movlw	01h
+  1629  0752  3001               	bcf	status, 5	;RP0=0, select bank0
+  1630  0753  1283               	bcf	status, 6	;RP1=0, select bank0
+  1631  0754  1303               	addwf	(_passoagora),f
+  1632  0755  07A8               	skipnc
+  1633  0756  1803               	incf	(_passoagora+1),f
+  1634  0757  0AA9               	movlw	0
+  1635  0758  3000               	addwf	(_passoagora+1),f
+  1636  0759  07A9               	goto	l765
+  1637  075A  2F5B               	
+  1638                           l69:	
+  1639  075B                     	
+  1640                           l765:	
+  1641  075B                     	movf	(_passoagora+1),w
+  1642  075B  0829               	xorlw	80h
+  1643  075C  3A80               	movwf	(??_motorantpasso+0)+0
+  1644  075D  00F7               	movf	(motorantpasso@qtdpassos+1),w
+  1645  075E  0874               	xorlw	80h
+  1646  075F  3A80               	subwf	(??_motorantpasso+0)+0,w
+  1647  0760  0277               	skipz
+  1648  0761  1D03               	goto	u105
+  1649  0762  2F65               	movf	(motorantpasso@qtdpassos),w
+  1650  0763  0873               	subwf	(_passoagora),w
+  1651  0764  0228               u105:
+  1652  0765                     
+  1653                           	skipc
+  1654  0765  1C03               	goto	u101
+  1655  0766  2F68               	goto	u100
+  1656  0767  2F69               u101:
+  1657  0768                     	goto	l759
+  1658  0768  2F40               u100:
+  1659  0769                     	goto	l72
+  1660  0769  2F6A               	
+  1661                           l71:	
+  1662  076A                     	line	55
+  1663                           	
+  1664                           l72:	
+  1665  076A                     	return
+  1666  076A  0008               	opt stack 0
+  1667                           GLOBAL	__end_of_motorantpasso
+  1668                           	__end_of_motorantpasso:
+  1669  076B                     	signat	_motorantpasso,8313
+  1670                           	global	_delay
+  1671                           
+  1672 ;; *************** function _delay *****************
+  1673 ;; Defined at:
+  1674 ;;		line 4 in file "delay.c"
+  1675 ;; Parameters:    Size  Location     Type
+  1676 ;;  t               2    0[COMMON] unsigned int 
+  1677 ;; Auto vars:     Size  Location     Type
+  1678 ;;		None
+  1679 ;; Return value:  Size  Location     Type
+  1680 ;;                  1    wreg      void 
+  1681 ;; Registers used:
+  1682 ;;		wreg, status,2, status,0
+  1683 ;; Tracked objects:
+  1684 ;;		On entry : 0/0
+  1685 ;;		On exit  : 0/0
+  1686 ;;		Unchanged: 0/0
+  1687 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+  1688 ;;      Params:         2       0       0       0       0
+  1689 ;;      Locals:         0       0       0       0       0
+  1690 ;;      Temps:          1       0       0       0       0
+  1691 ;;      Totals:         3       0       0       0       0
+  1692 ;;Total ram usage:        3 bytes
+  1693 ;; Hardware stack levels used:    1
+  1694 ;; This function calls:
+  1695 ;;		Nothing
+  1696 ;; This function is called by:
+  1697 ;;		_motorpasso
+  1698 ;;		_motorantpasso
+  1699 ;; This function uses a non-reentrant model
+  1700 ;;
+  1701                           psect	text4,local,class=CODE,delta=2,merge=1,group=0
+  1702                           	file	"delay.c"
+  1703                           	line	4
+  1704                           global __ptext4
+  1705                           __ptext4:	;psect for function _delay
+  1706  06F8                     psect	text4
+  1707                           	file	"delay.c"
+  1708                           	line	4
+  1709                           	global	__size_of_delay
+  1710                           	__size_of_delay	equ	__end_of_delay-_delay
+  1711  0017                     	
+  1712                           _delay:	
+  1713  06F8                     ;incstack = 0
+  1714                           	opt	stack 6
+  1715                           ; Regs used in _delay: [wreg+status,2+status,0]
+  1716                           	line	7
+  1717                           	
+  1718                           l741:	
+  1719  06F8                     ;delay.c: 4: void delay(unsigned int t );delay.c: 6: {;delay.c: 7:     while ( t )
+  1720                           	goto	l745
+  1721  06F8  2F07               	
+  1722                           l6:	
+  1723  06F9                     	line	9
+  1724                           	
+  1725                           l743:	
+  1726  06F9                     ;delay.c: 8:     {;delay.c: 9:         _delay((unsigned long)((1)*(4000000/4000.0)));
+  1727                           	opt asmopt_push
+  1728                           opt asmopt_off
+  1729                           	movlw	199
+  1730  06F9  30C7               movwf	((??_delay+0)+0),f
+  1731  06FA  00F2               	u157:
+  1732  06FB                     	nop2
+  1733  06FB  2EFC               decfsz	(??_delay+0)+0,f
+  1734  06FC  0BF2               	goto	u157
+  1735  06FD  2EFB               	nop2
+  1736  06FE  2EFF               	nop2
+  1737  06FF  2F00               opt asmopt_pop
+  1738                           
+  1739                           	line	10
+  1740                           ;delay.c: 10:         --t;
+  1741                           	movlw	01h
+  1742  0700  3001               	subwf	(delay@t),f
+  1743  0701  02F0               	movlw	0
+  1744  0702  3000               	skipc
+  1745  0703  1C03               	decf	(delay@t+1),f
+  1746  0704  03F1               	subwf	(delay@t+1),f
+  1747  0705  02F1               	goto	l745
+  1748  0706  2F07               	line	11
+  1749                           ;delay.c: 11:     }
+  1750                           	
+  1751                           l5:	
+  1752  0707                     	line	7
+  1753                           	
+  1754                           l745:	
+  1755  0707                     ;delay.c: 7:     while ( t )
+  1756                           	movf	((delay@t)),w
+  1757  0707  0870               iorwf	((delay@t+1)),w
+  1758  0708  0471               	btfss	status,2
+  1759  0709  1D03               	goto	u81
+  1760  070A  2F0C               	goto	u80
+  1761  070B  2F0D               u81:
+  1762  070C                     	goto	l743
+  1763  070C  2EF9               u80:
+  1764  070D                     	goto	l8
+  1765  070D  2F0E               	
+  1766                           l7:	
+  1767  070E                     	line	12
+  1768                           	
+  1769                           l8:	
+  1770  070E                     	return
+  1771  070E  0008               	opt stack 0
+  1772                           GLOBAL	__end_of_delay
+  1773                           	__end_of_delay:
+  1774  070F                     	signat	_delay,4217
+  1775                           global	___latbits
+  1776                           ___latbits	equ	2
+  1777  0002                     	global	btemp
+  1778                           	btemp set 07Eh
+  1779  007E                     
+  1780                           	DABS	1,126,2	;btemp
+  1781                           	global	wtemp0
+  1782                           	wtemp0 set btemp+0
+  1783  007E                     	end
 
 
 Data Sizes:
     Strings     0
     Constant    0
-    Data        5
-    BSS         2
+    Data        10
+    BSS         4
     Persistent  0
     Stack       0
 
 Auto Spaces:
     Space          Size  Autos    Used
-    COMMON           14      8      11
-    BANK0            80      0       4
+    COMMON           14     10      14
+    BANK0            80      0      10
     BANK1            80      0       0
     BANK3            96      0       0
     BANK2            96      0       0
@@ -1445,8 +1870,10 @@ Pointer List with Targets:
 
 Critical Paths under _main in COMMON
 
+    _main->_motorantpasso
     _main->_motorpasso
     _motorpasso->_delay
+    _motorantpasso->_delay
 
 Critical Paths under _main in BANK0
 
@@ -1469,17 +1896,23 @@ Call Graph Tables:
  ---------------------------------------------------------------------------------
  (Depth) Function   	        Calls       Base Space   Used Autos Params    Refs
  ---------------------------------------------------------------------------------
- (0) _main                                                 0     0      0     295
+ (0) _main                                                 2     2      0     770
+                                              8 COMMON     2     2      0
+                      _motorantpasso
                          _motorpasso
                     _motorpasso_init
  ---------------------------------------------------------------------------------
  (1) _motorpasso_init                                      0     0      0       0
  ---------------------------------------------------------------------------------
- (1) _motorpasso                                           5     1      4     295
+ (1) _motorpasso                                           5     1      4     371
                                               3 COMMON     5     1      4
                               _delay
  ---------------------------------------------------------------------------------
- (2) _delay                                                3     1      2      99
+ (1) _motorantpasso                                        5     1      4     371
+                                              3 COMMON     5     1      4
+                              _delay
+ ---------------------------------------------------------------------------------
+ (2) _delay                                                3     1      2     175
                                               0 COMMON     3     1      2
  ---------------------------------------------------------------------------------
  Estimated maximum stack depth 2
@@ -1488,6 +1921,8 @@ Call Graph Tables:
  Call Graph Graphs:
 
  _main (ROOT)
+   _motorantpasso
+     _delay
    _motorpasso
      _delay
    _motorpasso_init
@@ -1506,51 +1941,72 @@ BANK1               50      0       0       7        0.0%
 BITBANK1            50      0       0       6        0.0%
 SFR1                 0      0       0       2        0.0%
 BITSFR1              0      0       0       2        0.0%
-BANK0               50      0       4       5        5.0%
+BANK0               50      0       A       5       12.5%
 BITBANK0            50      0       0       4        0.0%
 SFR0                 0      0       0       1        0.0%
 BITSFR0              0      0       0       1        0.0%
-COMMON               E      8       B       1       78.6%
+COMMON               E      A       E       1      100.0%
 BITCOMMON            E      0       0       0        0.0%
 CODE                 0      0       0       0        0.0%
-DATA                 0      0       F      12        0.0%
-ABS                  0      0       F       3        0.0%
+DATA                 0      0      18      12        0.0%
+ABS                  0      0      18       3        0.0%
 NULL                 0      0       0       0        0.0%
 STACK                0      0       0       2        0.0%
 EEDATA             100      0       0       0        0.0%
 
 
 Microchip Technology PIC Macro Assembler V2.00 build -1524193055 
-Symbol Table                                                                                   Wed Jun 02 15:29:45 2021
+Symbol Table                                                                                   Wed Jun 02 16:19:46 2021
 
-                       l5 0790                         l6 0782                         l7 0797  
-                       l8 0797               __CFG_CP$OFF 0000                        l20 07AD  
-                      l31 0780                        l40 07CC                        l41 07B3  
-                      l17 079E                        l42 07DB                        l18 07AC  
-                      l43 07DB                        l19 07AD                        u30 0796  
-                      u31 0795                        u40 07DA                        u41 07D9  
-                      u45 07D6                        u57 0784                       l622 0774  
-                     l640 0782                       l642 0790                       l650 07C5  
-                     l652 07CC                       l644 07B0                       l638 0781  
-                     l646 07B3                       l654 0798                       l648 07BC  
-                     l656 079E              __CFG_CPD$OFF 0000                       fsr0 0004  
-                     indf 0000              __CFG_LVP$OFF 0000              __CFG_WRT$OFF 0000  
-                    _main 0798                      btemp 007E                      start 0000  
-           __CFG_IESO$OFF 0000                     ?_main 0070             __CFG_WDTE$OFF 0000  
-                   _PORTD 0008            __CFG_FCMEN$OFF 0000                     _delay 0781  
-          __CFG_BOREN$OFF 0000                     status 0003                     wtemp0 007E  
-          __CFG_MCLRE$OFF 0000           __initialization 07DC              __end_of_main 07B0  
-       ??_motorpasso_init 0070                    ??_main 0078                    ?_delay 0070  
-          __CFG_PWRTE$OFF 0000                    delay@t 0070                    _passos 0020  
-            __pdataCOMMON 007A   __end_of__initialization 07FC            __pcstackCOMMON 0070  
-            __pidataBANK0 0770             __end_of_delay 0798                   ??_delay 0072  
-              __pmaintext 0798           _motorpasso_init 0774                   __ptext1 0774  
-                 __ptext2 07B0                   __ptext3 0781      end_of_initialization 07FC  
-              _passoatual 0078                _motorpasso 07B0                 _PORTDbits 0008  
-             motorpasso@t 0075                 _TRISDbits 0088   __end_of_motorpasso_init 0781  
-           __pidataCOMMON 076F       start_initialization 07DC       motorpasso@numpassos 0073  
-__CFG_FOSC$INTRC_NOCLKOUT 0000               __pdataBANK0 0020               ?_motorpasso 0073  
-             __pbssCOMMON 0078                 ___latbits 0002          ?_motorpasso_init 0070  
-          __size_of_delay 0017       __size_of_motorpasso 002C                 _numpassos 007A  
-       __CFG_BOR4V$BOR40V 0000             __size_of_main 0018              ??_motorpasso 0077  
-      __end_of_motorpasso 07DC  __size_of_motorpasso_init 000D  
+                       l5 0707                         l6 06F9                         l7 070E  
+                       l8 070E                         pc 0002               __CFG_CP$OFF 0000  
+                      l21 076E                        l22 07C6                        l30 07A7  
+                      l31 07C4                        l23 076F                        l32 07DA  
+                      l24 07D9                        l33 07DB                        l25 0774  
+                      l34 07DB                        l26 077F                        l27 0788  
+                      l60 073A                        l28 0789                        l45 06E4  
+                      l29 07A6                        l70 0740                        l71 076A  
+                      l72 076A                        l57 072B                        l58 0712  
+                      l59 073A                        l69 075B                        u80 070D  
+                      u81 070C                        u90 0739                        u91 0738  
+                      u95 0735                        fsr 0004           ??_motorantpasso 0077  
+                     l651 06D8                       l741 06F8                       l743 06F9  
+                     l751 071B                       l745 0707                       l761 0749  
+                     l753 0724                       l833 07CB                       l763 0752  
+                     l755 072B                       l747 070F                       l771 077A  
+                     l765 075B                       l757 073B                       l749 0712  
+                     l781 079B                       l773 077F                       l759 0740  
+                     l791 07BF                       l783 07A1                       l775 0783  
+                     l767 076B                       l793 07C5                       l785 07A7  
+                     l777 0789                       l769 076F                       l787 07AC  
+                     l779 078E                       l795 07C6                       l789 07B9  
+                     u100 0769                       u101 0768                       u110 077A  
+                     u111 0779                       u120 0783                       u105 0765  
+                     u121 0782                       u130 07A1                       u131 07A0  
+                     u140 07BF                       u141 07BE                       u157 06FB  
+            __CFG_CPD$OFF 0000                       fsr0 0004                       indf 0000  
+            __CFG_LVP$OFF 0000              __CFG_WRT$OFF 0000                      _main 076B  
+                    btemp 007E                      start 0000             __CFG_IESO$OFF 0000  
+                   ?_main 0070             __CFG_WDTE$OFF 0000                     _PORTD 0008  
+          __CFG_FCMEN$OFF 0000                     _delay 06F8                     _passo 0020  
+          __CFG_BOREN$OFF 0000                     pclath 000A                     status 0003  
+                   wtemp0 007E    motorantpasso@qtdpassos 0073            __CFG_MCLRE$OFF 0000  
+         __initialization 07DE              __end_of_main 07DE         ??_motorpasso_init 0070  
+                  ??_main 0078                    ?_delay 0070            __CFG_PWRTE$OFF 0000  
+                  delay@t 0070                    _passos 0024              __pdataCOMMON 007C  
+ __end_of__initialization 07FC            __pcstackCOMMON 0070              __pidataBANK0 06D0  
+           __end_of_delay 070F                   ??_delay 0072                __pbssBANK0 0028  
+              __pmaintext 076B     __end_of_motorantpasso 076B           _motorpasso_init 06D8  
+                 __ptext1 06D8                   __ptext2 070F                   __ptext3 073B  
+                 __ptext4 06F8      end_of_initialization 07FC                _passoagora 0028  
+              _passoatual 007A                _motorpasso 070F                 _PORTDbits 0008  
+             motorpasso@t 0075                 _TRISDbits 0088   __end_of_motorpasso_init 06E5  
+              main@estado 0078             __pidataCOMMON 06CE       start_initialization 07DE  
+     motorpasso@numpassos 0073  __CFG_FOSC$INTRC_NOCLKOUT 0000                init_fetch0 06E5  
+             __pdataBANK0 0020               ?_motorpasso 0073               __pbssCOMMON 007A  
+               ___latbits 0002          ?_motorpasso_init 0070            __size_of_delay 0017  
+     __size_of_motorpasso 002C    __size_of_motorantpasso 0030                 _numpassos 007D  
+               _qtdpassos 007C             _motorantpasso 073B         __CFG_BOR4V$BOR40V 0000  
+           __size_of_main 0073            motorantpasso@t 0075              ??_motorpasso 0077  
+          ?_motorantpasso 0073                  init_ram0 06E9        __end_of_motorpasso 073B  
+__size_of_motorpasso_init 000D  

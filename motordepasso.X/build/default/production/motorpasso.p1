@@ -285,44 +285,68 @@ Version 4.0 HI-TECH Software Intermediate Code
 "3546
 [; ;C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic16f887.h: 3546: __asm("EECON2 equ 018Dh");
 [; <" EECON2 equ 018Dh ;# ">
-"5 motorpasso.c
-[; ;motorpasso.c: 5: void motorpasso_init ( void )
+"6 motorpasso.c
+[; ;motorpasso.c: 6: void motorpasso_init ( void )
 [v _motorpasso_init `(v ~T0 @X0 1 ef ]
-"6
-[; ;motorpasso.c: 6: {
+"7
+[; ;motorpasso.c: 7: {
 {
 [e :U _motorpasso_init ]
 [f ]
-"7
-[; ;motorpasso.c: 7:     TRISDbits.TRISD7 = 0;
-[e = . . _TRISDbits 0 7 -> -> 0 `i `uc ]
 "8
-[; ;motorpasso.c: 8:     TRISDbits.TRISD6 = 0;
-[e = . . _TRISDbits 0 6 -> -> 0 `i `uc ]
+[; ;motorpasso.c: 8:     TRISDbits.TRISD7 = 0;
+[e = . . _TRISDbits 0 7 -> -> 0 `i `uc ]
 "9
-[; ;motorpasso.c: 9:     TRISDbits.TRISD5 = 0;
-[e = . . _TRISDbits 0 5 -> -> 0 `i `uc ]
+[; ;motorpasso.c: 9:     TRISDbits.TRISD6 = 0;
+[e = . . _TRISDbits 0 6 -> -> 0 `i `uc ]
 "10
-[; ;motorpasso.c: 10:     TRISDbits.TRISD4 = 0;
-[e = . . _TRISDbits 0 4 -> -> 0 `i `uc ]
+[; ;motorpasso.c: 10:     TRISDbits.TRISD5 = 0;
+[e = . . _TRISDbits 0 5 -> -> 0 `i `uc ]
 "11
-[; ;motorpasso.c: 11:     PORTDbits.RD7 =0;
-[e = . . _PORTDbits 0 7 -> -> 0 `i `uc ]
+[; ;motorpasso.c: 11:     TRISDbits.TRISD4 = 0;
+[e = . . _TRISDbits 0 4 -> -> 0 `i `uc ]
 "12
-[; ;motorpasso.c: 12:     PORTDbits.RD6 =0;
-[e = . . _PORTDbits 0 6 -> -> 0 `i `uc ]
+[; ;motorpasso.c: 12:     PORTDbits.RD7 =0;
+[e = . . _PORTDbits 0 7 -> -> 0 `i `uc ]
 "13
-[; ;motorpasso.c: 13:     PORTDbits.RD5 =1;
-[e = . . _PORTDbits 0 5 -> -> 1 `i `uc ]
+[; ;motorpasso.c: 13:     PORTDbits.RD6 =0;
+[e = . . _PORTDbits 0 6 -> -> 0 `i `uc ]
 "14
-[; ;motorpasso.c: 14:     PORTDbits.RD4 =0;
-[e = . . _PORTDbits 0 4 -> -> 0 `i `uc ]
+[; ;motorpasso.c: 14:     PORTDbits.RD5 =1;
+[e = . . _PORTDbits 0 5 -> -> 1 `i `uc ]
 "15
-[; ;motorpasso.c: 15: }
+[; ;motorpasso.c: 15:     PORTDbits.RD4 =0;
+[e = . . _PORTDbits 0 4 -> -> 0 `i `uc ]
+"16
+[; ;motorpasso.c: 16: }
 [e :UE 138 ]
 }
-"17
-[; ;motorpasso.c: 17: char passos[4] = {0x40, 0x80, 0x10, 0x20};
+"18
+[; ;motorpasso.c: 18: void botoes_init (void)
+[v _botoes_init `(v ~T0 @X0 1 ef ]
+"19
+[; ;motorpasso.c: 19: {
+{
+[e :U _botoes_init ]
+[f ]
+"20
+[; ;motorpasso.c: 20:     TRISDbits.TRISD0 = 0;
+[e = . . _TRISDbits 0 0 -> -> 0 `i `uc ]
+"21
+[; ;motorpasso.c: 21:     TRISDbits.TRISD1 = 0;
+[e = . . _TRISDbits 0 1 -> -> 0 `i `uc ]
+"22
+[; ;motorpasso.c: 22:     PORTDbits.RD0 = 0;
+[e = . . _PORTDbits 0 0 -> -> 0 `i `uc ]
+"23
+[; ;motorpasso.c: 23:     PORTDbits.RD1 = 0;
+[e = . . _PORTDbits 0 1 -> -> 0 `i `uc ]
+"24
+[; ;motorpasso.c: 24: }
+[e :UE 139 ]
+}
+"27
+[; ;motorpasso.c: 27: char passos[4] = {0x40, 0x80, 0x10, 0x20};
 [v _passos `uc ~T0 @X0 -> 4 `i e ]
 [i _passos
 :U ..
@@ -332,56 +356,120 @@ Version 4.0 HI-TECH Software Intermediate Code
 -> -> 32 `i `uc
 ..
 ]
-"18
-[; ;motorpasso.c: 18: int passoatual = 0;
+"29
+[; ;motorpasso.c: 29: int passoatual = 0;
 [v _passoatual `i ~T0 @X0 1 e ]
 [i _passoatual
 -> 0 `i
 ]
-"19
-[; ;motorpasso.c: 19: char numpassos = 4;
+"30
+[; ;motorpasso.c: 30: char numpassos = 4;
 [v _numpassos `uc ~T0 @X0 1 e ]
 [i _numpassos
 -> -> 4 `i `uc
 ]
-"21
-[; ;motorpasso.c: 21: void motorpasso (int numpassos, int t)
+"32
+[; ;motorpasso.c: 32: void motorpasso (int numpassos, int t)
 [v _motorpasso `(v ~T0 @X0 1 ef2`i`i ]
-"22
-[; ;motorpasso.c: 22: {
+"33
+[; ;motorpasso.c: 33: {
 {
 [e :U _motorpasso ]
-"21
-[; ;motorpasso.c: 21: void motorpasso (int numpassos, int t)
+"32
+[; ;motorpasso.c: 32: void motorpasso (int numpassos, int t)
 [v _numpassos `i ~T0 @X0 1 r1 ]
 [v _t `i ~T0 @X0 1 r2 ]
-"22
-[; ;motorpasso.c: 22: {
+"33
+[; ;motorpasso.c: 33: {
 [f ]
-"24
-[; ;motorpasso.c: 24:     for ( passoatual=0; passoatual<numpassos; passoatual++ )
+"35
+[; ;motorpasso.c: 35:     for ( passoatual=0; passoatual<numpassos; passoatual++ )
 {
 [e = _passoatual -> 0 `i ]
-[e $U 143  ]
-[e :U 140 ]
-"25
-[; ;motorpasso.c: 25:     {
+[e $U 144  ]
+[e :U 141 ]
+"36
+[; ;motorpasso.c: 36:     {
 {
-"26
-[; ;motorpasso.c: 26:         PORTD = passos[passoatual % 4];
+"37
+[; ;motorpasso.c: 37:         PORTD = passos[passoatual % 4];
 [e = _PORTD -> *U + &U _passos * -> -> % _passoatual -> 4 `i `ui `ux -> -> # *U &U _passos `ui `ux `uc ]
-"27
-[; ;motorpasso.c: 27:         delay(t);
+"38
+[; ;motorpasso.c: 38:         delay(t);
 [e ( _delay (1 -> _t `ui ]
-"28
-[; ;motorpasso.c: 28:     }
+"39
+[; ;motorpasso.c: 39:     }
 }
 [e ++ _passoatual -> 1 `i ]
-[e :U 143 ]
-[e $ < _passoatual _numpassos 140  ]
-[e :U 141 ]
+[e :U 144 ]
+[e $ < _passoatual _numpassos 141  ]
+[e :U 142 ]
 }
-"29
-[; ;motorpasso.c: 29: }
-[e :UE 139 ]
+"40
+[; ;motorpasso.c: 40: }
+[e :UE 140 ]
+}
+"42
+[; ;motorpasso.c: 42: char passo[4] = {0x20, 0x10, 0x80, 0x40};
+[v _passo `uc ~T0 @X0 -> 4 `i e ]
+[i _passo
+:U ..
+-> -> 32 `i `uc
+-> -> 16 `i `uc
+-> -> 128 `i `uc
+-> -> 64 `i `uc
+..
+]
+"44
+[; ;motorpasso.c: 44: int passoagora = 0;
+[v _passoagora `i ~T0 @X0 1 e ]
+[i _passoagora
+-> 0 `i
+]
+"45
+[; ;motorpasso.c: 45: char qtdpassos = 4;
+[v _qtdpassos `uc ~T0 @X0 1 e ]
+[i _qtdpassos
+-> -> 4 `i `uc
+]
+"47
+[; ;motorpasso.c: 47: void motorantpasso (int qtdpassos, int t)
+[v _motorantpasso `(v ~T0 @X0 1 ef2`i`i ]
+"48
+[; ;motorpasso.c: 48: {
+{
+[e :U _motorantpasso ]
+"47
+[; ;motorpasso.c: 47: void motorantpasso (int qtdpassos, int t)
+[v _qtdpassos `i ~T0 @X0 1 r1 ]
+[v _t `i ~T0 @X0 1 r2 ]
+"48
+[; ;motorpasso.c: 48: {
+[f ]
+"50
+[; ;motorpasso.c: 50:     for ( passoagora=0; passoagora<qtdpassos; passoagora++ )
+{
+[e = _passoagora -> 0 `i ]
+[e $U 149  ]
+[e :U 146 ]
+"51
+[; ;motorpasso.c: 51:     {
+{
+"52
+[; ;motorpasso.c: 52:         PORTD = passo[passoagora % 4];
+[e = _PORTD -> *U + &U _passo * -> -> % _passoagora -> 4 `i `ui `ux -> -> # *U &U _passo `ui `ux `uc ]
+"53
+[; ;motorpasso.c: 53:         delay(t);
+[e ( _delay (1 -> _t `ui ]
+"54
+[; ;motorpasso.c: 54:     }
+}
+[e ++ _passoagora -> 1 `i ]
+[e :U 149 ]
+[e $ < _passoagora _qtdpassos 146  ]
+[e :U 147 ]
+}
+"55
+[; ;motorpasso.c: 55: }
+[e :UE 145 ]
 }

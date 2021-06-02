@@ -2521,6 +2521,8 @@ extern __bank0 __bit __timeout;
 
 void motorpasso_init ( void );
 void motorpasso (int numpassos, int t);
+void motorantpasso (int numpassos, int t);
+void botoes_init (void);
 # 3 "main.c" 2
 
 # 1 "./delay.h" 1
@@ -2531,13 +2533,40 @@ void delay(unsigned int t );
 # 4 "main.c" 2
 
 
+
+
+
 void main (void)
 {
-    motorpasso_init();
+
+    int estado = 0;
 
     while( 1 )
     {
-        motorpasso(48, 100);
+        switch(estado)
+        {
+            case 0:
+                estado = 1;
+                break;
+            case 1:
+                if (PORTDbits.RD0 == 1)
+                    estado = 2;
+                if (PORTDbits.RD1 == 1)
+                    estado = 3;
+                break;
+            case 2:
+                motorpasso_init();
+                motorpasso(48, 100);
+                if (PORTDbits.RD1 ==1)
+                estado = 1;
+                break;
+            case 3:
+                motorpasso_init();
+                motorantpasso(48, 100);
+                if (PORTDbits.RD1 == 1)
+                estado = 1;
+                break;
+        }
     }
     return;
 }
