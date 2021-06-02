@@ -1,14 +1,14 @@
-/*
- * File:   main.c
- * Author: 20185147
- *
- * Created on 20 de Maio de 2021, 14:34
- */
-
-
 #include <xc.h>
+#include "config.h"
+#include "motorpasso.h"
 
-void main(void) 
+void main (void)
 {
+    motorpasso_init();
+    
+    while( 1 )
+    {
+        motorpasso_init();
+    }
     return;
 }
