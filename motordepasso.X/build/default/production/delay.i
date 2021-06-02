@@ -1,4 +1,4 @@
-# 1 "main.c"
+# 1 "delay.c"
 # 1 "<built-in>" 1
 # 1 "<built-in>" 3
 # 288 "<built-in>" 3
@@ -6,7 +6,7 @@
 # 1 "<built-in>" 2
 # 1 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.00\\pic\\include\\language_support.h" 1 3
 # 2 "<built-in>" 2
-# 1 "main.c" 2
+# 1 "delay.c" 2
 # 1 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.00\\pic\\include\\xc.h" 1 3
 # 18 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.00\\pic\\include\\xc.h" 3
 extern const char __xc8_OPTIM_SPEED;
@@ -2491,7 +2491,7 @@ extern __bank0 unsigned char __resetbits;
 extern __bank0 __bit __powerdown;
 extern __bank0 __bit __timeout;
 # 27 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.00\\pic\\include\\xc.h" 2 3
-# 1 "main.c" 2
+# 1 "delay.c" 2
 
 # 1 "./config.h" 1
 
@@ -2513,31 +2513,15 @@ extern __bank0 __bit __timeout;
 
 #pragma config BOR4V = BOR40V
 #pragma config WRT = OFF
-# 2 "main.c" 2
-
-# 1 "./motorpasso.h" 1
+# 2 "delay.c" 2
 
 
+void delay(unsigned int t )
 
-void motorpasso_init ( void );
-void motorpasso (int numpassos, int t);
-# 3 "main.c" 2
-
-# 1 "./delay.h" 1
-
-
-
-void delay(unsigned int t );
-# 4 "main.c" 2
-
-
-void main (void)
 {
-    motorpasso_init();
-
-    while( 1 )
+    while ( t )
     {
-        motorpasso(48, 100);
+        _delay((unsigned long)((1)*(4000000/4000.0)));
+        --t;
     }
-    return;
 }

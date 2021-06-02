@@ -1,4 +1,4 @@
-# 1 "main.c"
+# 1 "motorpasso.c"
 # 1 "<built-in>" 1
 # 1 "<built-in>" 3
 # 288 "<built-in>" 3
@@ -6,7 +6,29 @@
 # 1 "<built-in>" 2
 # 1 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.00\\pic\\include\\language_support.h" 1 3
 # 2 "<built-in>" 2
-# 1 "main.c" 2
+# 1 "motorpasso.c" 2
+# 1 "./config.h" 1
+
+
+
+
+
+#pragma config FOSC = INTRC_NOCLKOUT
+#pragma config WDTE = OFF
+#pragma config PWRTE = OFF
+#pragma config MCLRE = OFF
+#pragma config CP = OFF
+#pragma config CPD = OFF
+#pragma config BOREN = OFF
+#pragma config IESO = OFF
+#pragma config FCMEN = OFF
+#pragma config LVP = OFF
+
+
+#pragma config BOR4V = BOR40V
+#pragma config WRT = OFF
+# 1 "motorpasso.c" 2
+
 # 1 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.00\\pic\\include\\xc.h" 1 3
 # 18 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.00\\pic\\include\\xc.h" 3
 extern const char __xc8_OPTIM_SPEED;
@@ -2491,53 +2513,38 @@ extern __bank0 unsigned char __resetbits;
 extern __bank0 __bit __powerdown;
 extern __bank0 __bit __timeout;
 # 27 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.00\\pic\\include\\xc.h" 2 3
-# 1 "main.c" 2
-
-# 1 "./config.h" 1
-
-
-
-
-
-#pragma config FOSC = INTRC_NOCLKOUT
-#pragma config WDTE = OFF
-#pragma config PWRTE = OFF
-#pragma config MCLRE = OFF
-#pragma config CP = OFF
-#pragma config CPD = OFF
-#pragma config BOREN = OFF
-#pragma config IESO = OFF
-#pragma config FCMEN = OFF
-#pragma config LVP = OFF
-
-
-#pragma config BOR4V = BOR40V
-#pragma config WRT = OFF
-# 2 "main.c" 2
-
-# 1 "./motorpasso.h" 1
-
-
-
-void motorpasso_init ( void );
-void motorpasso (int numpassos, int t);
-# 3 "main.c" 2
+# 2 "motorpasso.c" 2
 
 # 1 "./delay.h" 1
 
 
 
 void delay(unsigned int t );
-# 4 "main.c" 2
+# 3 "motorpasso.c" 2
 
 
-void main (void)
+void motorpasso_init ( void )
 {
-    motorpasso_init();
+    TRISDbits.TRISD7 = 0;
+    TRISDbits.TRISD6 = 0;
+    TRISDbits.TRISD5 = 0;
+    TRISDbits.TRISD4 = 0;
+    PORTDbits.RD7 =0;
+    PORTDbits.RD6 =0;
+    PORTDbits.RD5 =1;
+    PORTDbits.RD4 =0;
+}
 
-    while( 1 )
+char passos[4] = {0x40, 0x80, 0x10, 0x20};
+int passoatual = 0;
+char numpassos = 4;
+
+void motorpasso (int numpassos, int t)
+{
+
+    for ( passoatual=0; passoatual<numpassos; passoatual++ )
     {
-        motorpasso(48, 100);
+        PORTD = passos[passoatual % 4];
+        delay(t);
     }
-    return;
 }

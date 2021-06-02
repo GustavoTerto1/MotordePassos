@@ -16,6 +16,7 @@ void motorpasso_init ( void )
 
 char passos[4] = {0x40, 0x80, 0x10, 0x20};
 int passoatual = 0;
+char numpassos = 4;
 
 void motorpasso (int numpassos, int t)
 {

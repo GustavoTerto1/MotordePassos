@@ -1,11 +1,8 @@
 Version 4.0 HI-TECH Software Intermediate Code
-[p mainexit ]
-"4 ./motorpasso.h
-[; ;./motorpasso.h: 4: void motorpasso_init ( void );
-[v _motorpasso_init `(v ~T0 @X0 0 ef ]
-"5
-[; ;./motorpasso.h: 5: void motorpasso (int numpassos, int t);
-[v _motorpasso `(v ~T0 @X0 0 ef2`i`i ]
+[v F1256 `(v ~T0 @X0 1 tf1`ul ]
+"92 C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic.h
+[v __delay `JF1256 ~T0 @X0 0 e ]
+[p i __delay ]
 "54 C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic16f887.h
 [; ;C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic16f887.h: 54: __asm("INDF equ 00h");
 [; <" INDF equ 00h ;# ">
@@ -264,37 +261,41 @@ Version 4.0 HI-TECH Software Intermediate Code
 [p x BOR4V = BOR40V ]
 "19
 [p x WRT = OFF ]
-[v $root$_main `(v ~T0 @X0 0 e ]
-"6 main.c
-[; ;main.c: 6: void main (void)
-[v _main `(v ~T0 @X0 1 ef ]
-"7
-[; ;main.c: 7: {
+"4 delay.c
+[; ;delay.c: 4: void delay(unsigned int t )
+[v _delay `(v ~T0 @X0 1 ef1`ui ]
+"6
+[; ;delay.c: 6: {
 {
-[e :U _main ]
+[e :U _delay ]
+"4
+[; ;delay.c: 4: void delay(unsigned int t )
+[v _t `ui ~T0 @X0 1 r1 ]
+"6
+[; ;delay.c: 6: {
 [f ]
-"8
-[; ;main.c: 8:     motorpasso_init();
-[e ( _motorpasso_init ..  ]
-"10
-[; ;main.c: 10:     while( 1 )
+"7
+[; ;delay.c: 7:     while ( t )
+[e $U 139  ]
 [e :U 140 ]
-"11
-[; ;main.c: 11:     {
+"8
+[; ;delay.c: 8:     {
 {
-"12
-[; ;main.c: 12:         motorpasso(48, 100);
-[e ( _motorpasso (2 , -> 48 `i -> 100 `i ]
-"13
-[; ;main.c: 13:     }
+"9
+[; ;delay.c: 9:         _delay((unsigned long)((1)*(4000000/4000.0)));
+[e ( __delay (1 -> * -> -> 1 `i `d / -> -> 4000000 `l `d .4000.0 `ul ]
+"10
+[; ;delay.c: 10:         --t;
+[e =- _t -> -> 1 `i `ui ]
+"11
+[; ;delay.c: 11:     }
 }
 [e :U 139 ]
-[e $U 140  ]
+"7
+[; ;delay.c: 7:     while ( t )
+[e $ != _t -> -> 0 `i `ui 140  ]
 [e :U 141 ]
-"14
-[; ;main.c: 14:     return;
-[e $UE 138  ]
-"15
-[; ;main.c: 15: }
+"12
+[; ;delay.c: 12: }
 [e :UE 138 ]
 }
