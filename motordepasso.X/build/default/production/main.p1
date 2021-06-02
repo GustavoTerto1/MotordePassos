@@ -1,11 +1,25 @@
 Version 4.0 HI-TECH Software Intermediate Code
 [p mainexit ]
+"358 C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic16f887.h
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic16f887.h: 358:     struct {
+[s S12 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S12 . RD0 RD1 RD2 RD3 RD4 RD5 RD6 RD7 ]
+"357
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic16f887.h: 357: typedef union {
+[u S11 `S12 1 ]
+[n S11 . . ]
+"369
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic16f887.h: 369: extern volatile PORTDbits_t PORTDbits __attribute__((address(0x008)));
+[v _PORTDbits `VS11 ~T0 @X0 0 e@8 ]
 "4 ./motorpasso.h
 [; ;./motorpasso.h: 4: void motorpasso_init ( void );
 [v _motorpasso_init `(v ~T0 @X0 0 ef ]
 "5
 [; ;./motorpasso.h: 5: void motorpasso (int numpassos, int t);
 [v _motorpasso `(v ~T0 @X0 0 ef2`i`i ]
+"6
+[; ;./motorpasso.h: 6: void motorantpasso (int numpassos, int t);
+[v _motorantpasso `(v ~T0 @X0 0 ef2`i`i ]
 "54 C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic16f887.h
 [; ;C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic16f887.h: 54: __asm("INDF equ 00h");
 [; <" INDF equ 00h ;# ">
@@ -265,36 +279,118 @@ Version 4.0 HI-TECH Software Intermediate Code
 "19
 [p x WRT = OFF ]
 [v $root$_main `(v ~T0 @X0 0 e ]
-"6 main.c
-[; ;main.c: 6: void main (void)
+"9 main.c
+[; ;main.c: 9: void main (void)
 [v _main `(v ~T0 @X0 1 ef ]
-"7
-[; ;main.c: 7: {
+"10
+[; ;main.c: 10: {
 {
 [e :U _main ]
 [f ]
-"8
-[; ;main.c: 8:     motorpasso_init();
-[e ( _motorpasso_init ..  ]
-"10
-[; ;main.c: 10:     while( 1 )
-[e :U 140 ]
-"11
-[; ;main.c: 11:     {
-{
 "12
-[; ;main.c: 12:         motorpasso(48, 100);
+[; ;main.c: 12:     int estado = 0;
+[v _estado `i ~T0 @X0 1 a ]
+[e = _estado -> 0 `i ]
+"14
+[; ;main.c: 14:     while( 1 )
+[e :U 140 ]
+"15
+[; ;main.c: 15:     {
+{
+"16
+[; ;main.c: 16:         switch(estado)
+[e $U 143  ]
+"17
+[; ;main.c: 17:         {
+{
+"18
+[; ;main.c: 18:             case 0:
+[e :U 144 ]
+"19
+[; ;main.c: 19:                 estado = 1;
+[e = _estado -> 1 `i ]
+"20
+[; ;main.c: 20:                 break;
+[e $U 142  ]
+"21
+[; ;main.c: 21:             case 1:
+[e :U 145 ]
+"22
+[; ;main.c: 22:                 if (PORTDbits.RD0 == 1)
+[e $ ! == -> . . _PORTDbits 0 0 `i -> 1 `i 146  ]
+"23
+[; ;main.c: 23:                     estado = 2;
+[e = _estado -> 2 `i ]
+[e :U 146 ]
+"24
+[; ;main.c: 24:                 if (PORTDbits.RD1 == 1)
+[e $ ! == -> . . _PORTDbits 0 1 `i -> 1 `i 147  ]
+"25
+[; ;main.c: 25:                     estado = 3;
+[e = _estado -> 3 `i ]
+[e :U 147 ]
+"26
+[; ;main.c: 26:                 break;
+[e $U 142  ]
+"27
+[; ;main.c: 27:             case 2:
+[e :U 148 ]
+"28
+[; ;main.c: 28:                 motorpasso_init();
+[e ( _motorpasso_init ..  ]
+"29
+[; ;main.c: 29:                 motorpasso(48, 100);
 [e ( _motorpasso (2 , -> 48 `i -> 100 `i ]
-"13
-[; ;main.c: 13:     }
+"30
+[; ;main.c: 30:                 if (PORTDbits.RD1 ==1)
+[e $ ! == -> . . _PORTDbits 0 1 `i -> 1 `i 149  ]
+"31
+[; ;main.c: 31:                 estado = 1;
+[e = _estado -> 1 `i ]
+[e :U 149 ]
+"32
+[; ;main.c: 32:                 break;
+[e $U 142  ]
+"33
+[; ;main.c: 33:             case 3:
+[e :U 150 ]
+"34
+[; ;main.c: 34:                 motorpasso_init();
+[e ( _motorpasso_init ..  ]
+"35
+[; ;main.c: 35:                 motorantpasso(48, 100);
+[e ( _motorantpasso (2 , -> 48 `i -> 100 `i ]
+"36
+[; ;main.c: 36:                 if (PORTDbits.RD1 == 1)
+[e $ ! == -> . . _PORTDbits 0 1 `i -> 1 `i 151  ]
+"37
+[; ;main.c: 37:                 estado = 1;
+[e = _estado -> 1 `i ]
+[e :U 151 ]
+"38
+[; ;main.c: 38:                 break;
+[e $U 142  ]
+"39
+[; ;main.c: 39:         }
+}
+[e $U 142  ]
+[e :U 143 ]
+[e [\ _estado , $ -> 0 `i 144
+ , $ -> 1 `i 145
+ , $ -> 2 `i 148
+ , $ -> 3 `i 150
+ 142 ]
+[e :U 142 ]
+"40
+[; ;main.c: 40:     }
 }
 [e :U 139 ]
 [e $U 140  ]
 [e :U 141 ]
-"14
-[; ;main.c: 14:     return;
+"41
+[; ;main.c: 41:     return;
 [e $UE 138  ]
-"15
-[; ;main.c: 15: }
+"42
+[; ;main.c: 42: }
 [e :UE 138 ]
 }
