@@ -1,6 +1,7 @@
 #include <xc.h>
 #include "config.h"
 #include "motorpasso.h"
+#include "delay.h"
 
 void main (void)
 {
@@ -8,7 +9,7 @@ void main (void)
     
     while( 1 )
     {
-        motorpasso_init();
+        motorpasso(48, 100);
     }
     return;
 }

@@ -1,11 +1,56 @@
 Version 4.0 HI-TECH Software Intermediate Code
-[p mainexit ]
-"4 ./motorpasso.h
-[; ;./motorpasso.h: 4: void motorpasso_init ( void );
-[v _motorpasso_init `(v ~T0 @X0 0 ef ]
-"5
-[; ;./motorpasso.h: 5: void motorpasso (int numpassos, int t);
-[v _motorpasso `(v ~T0 @X0 0 ef2`i`i ]
+"1608 C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic16f887.h
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic16f887.h: 1608:     struct {
+[s S59 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S59 . TRISD0 TRISD1 TRISD2 TRISD3 TRISD4 TRISD5 TRISD6 TRISD7 ]
+"1607
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic16f887.h: 1607: typedef union {
+[u S58 `S59 1 ]
+[n S58 . . ]
+"1619
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic16f887.h: 1619: extern volatile TRISDbits_t TRISDbits __attribute__((address(0x088)));
+[v _TRISDbits `VS58 ~T0 @X0 0 e@136 ]
+"358
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic16f887.h: 358:     struct {
+[s S12 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S12 . RD0 RD1 RD2 RD3 RD4 RD5 RD6 RD7 ]
+"357
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic16f887.h: 357: typedef union {
+[u S11 `S12 1 ]
+[n S11 . . ]
+"369
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic16f887.h: 369: extern volatile PORTDbits_t PORTDbits __attribute__((address(0x008)));
+[v _PORTDbits `VS11 ~T0 @X0 0 e@8 ]
+"352
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic16f887.h: 352: extern volatile unsigned char PORTD __attribute__((address(0x008)));
+[v _PORTD `Vuc ~T0 @X0 0 e@8 ]
+"4 ./delay.h
+[; ;./delay.h: 4: void delay(unsigned int t );
+[v _delay `(v ~T0 @X0 0 ef1`ui ]
+"6 ./config.h
+[p x FOSC = INTRC_NOCLKOUT ]
+"7
+[p x WDTE = OFF ]
+"8
+[p x PWRTE = OFF ]
+"9
+[p x MCLRE = OFF ]
+"10
+[p x CP = OFF ]
+"11
+[p x CPD = OFF ]
+"12
+[p x BOREN = OFF ]
+"13
+[p x IESO = OFF ]
+"14
+[p x FCMEN = OFF ]
+"15
+[p x LVP = OFF ]
+"18
+[p x BOR4V = BOR40V ]
+"19
+[p x WRT = OFF ]
 "54 C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic16f887.h
 [; ;C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic16f887.h: 54: __asm("INDF equ 00h");
 [; <" INDF equ 00h ;# ">
@@ -240,61 +285,103 @@ Version 4.0 HI-TECH Software Intermediate Code
 "3546
 [; ;C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic16f887.h: 3546: __asm("EECON2 equ 018Dh");
 [; <" EECON2 equ 018Dh ;# ">
-"6 ./config.h
-[p x FOSC = INTRC_NOCLKOUT ]
-"7
-[p x WDTE = OFF ]
-"8
-[p x PWRTE = OFF ]
-"9
-[p x MCLRE = OFF ]
-"10
-[p x CP = OFF ]
-"11
-[p x CPD = OFF ]
-"12
-[p x BOREN = OFF ]
-"13
-[p x IESO = OFF ]
-"14
-[p x FCMEN = OFF ]
-"15
-[p x LVP = OFF ]
-"18
-[p x BOR4V = BOR40V ]
-"19
-[p x WRT = OFF ]
-[v $root$_main `(v ~T0 @X0 0 e ]
-"6 main.c
-[; ;main.c: 6: void main (void)
-[v _main `(v ~T0 @X0 1 ef ]
-"7
-[; ;main.c: 7: {
+"5 motorpasso.c
+[; ;motorpasso.c: 5: void motorpasso_init ( void )
+[v _motorpasso_init `(v ~T0 @X0 1 ef ]
+"6
+[; ;motorpasso.c: 6: {
 {
-[e :U _main ]
+[e :U _motorpasso_init ]
 [f ]
+"7
+[; ;motorpasso.c: 7:     TRISDbits.TRISD7 = 0;
+[e = . . _TRISDbits 0 7 -> -> 0 `i `uc ]
 "8
-[; ;main.c: 8:     motorpasso_init();
-[e ( _motorpasso_init ..  ]
+[; ;motorpasso.c: 8:     TRISDbits.TRISD6 = 0;
+[e = . . _TRISDbits 0 6 -> -> 0 `i `uc ]
+"9
+[; ;motorpasso.c: 9:     TRISDbits.TRISD5 = 0;
+[e = . . _TRISDbits 0 5 -> -> 0 `i `uc ]
 "10
-[; ;main.c: 10:     while( 1 )
-[e :U 140 ]
+[; ;motorpasso.c: 10:     TRISDbits.TRISD4 = 0;
+[e = . . _TRISDbits 0 4 -> -> 0 `i `uc ]
 "11
-[; ;main.c: 11:     {
-{
+[; ;motorpasso.c: 11:     PORTDbits.RD7 =0;
+[e = . . _PORTDbits 0 7 -> -> 0 `i `uc ]
 "12
-[; ;main.c: 12:         motorpasso(48, 100);
-[e ( _motorpasso (2 , -> 48 `i -> 100 `i ]
+[; ;motorpasso.c: 12:     PORTDbits.RD6 =0;
+[e = . . _PORTDbits 0 6 -> -> 0 `i `uc ]
 "13
-[; ;main.c: 13:     }
-}
-[e :U 139 ]
-[e $U 140  ]
-[e :U 141 ]
+[; ;motorpasso.c: 13:     PORTDbits.RD5 =1;
+[e = . . _PORTDbits 0 5 -> -> 1 `i `uc ]
 "14
-[; ;main.c: 14:     return;
-[e $UE 138  ]
+[; ;motorpasso.c: 14:     PORTDbits.RD4 =0;
+[e = . . _PORTDbits 0 4 -> -> 0 `i `uc ]
 "15
-[; ;main.c: 15: }
+[; ;motorpasso.c: 15: }
 [e :UE 138 ]
+}
+"17
+[; ;motorpasso.c: 17: char passos[4] = {0x40, 0x80, 0x10, 0x20};
+[v _passos `uc ~T0 @X0 -> 4 `i e ]
+[i _passos
+:U ..
+-> -> 64 `i `uc
+-> -> 128 `i `uc
+-> -> 16 `i `uc
+-> -> 32 `i `uc
+..
+]
+"18
+[; ;motorpasso.c: 18: int passoatual = 0;
+[v _passoatual `i ~T0 @X0 1 e ]
+[i _passoatual
+-> 0 `i
+]
+"19
+[; ;motorpasso.c: 19: char numpassos = 4;
+[v _numpassos `uc ~T0 @X0 1 e ]
+[i _numpassos
+-> -> 4 `i `uc
+]
+"21
+[; ;motorpasso.c: 21: void motorpasso (int numpassos, int t)
+[v _motorpasso `(v ~T0 @X0 1 ef2`i`i ]
+"22
+[; ;motorpasso.c: 22: {
+{
+[e :U _motorpasso ]
+"21
+[; ;motorpasso.c: 21: void motorpasso (int numpassos, int t)
+[v _numpassos `i ~T0 @X0 1 r1 ]
+[v _t `i ~T0 @X0 1 r2 ]
+"22
+[; ;motorpasso.c: 22: {
+[f ]
+"24
+[; ;motorpasso.c: 24:     for ( passoatual=0; passoatual<numpassos; passoatual++ )
+{
+[e = _passoatual -> 0 `i ]
+[e $U 143  ]
+[e :U 140 ]
+"25
+[; ;motorpasso.c: 25:     {
+{
+"26
+[; ;motorpasso.c: 26:         PORTD = passos[passoatual % 4];
+[e = _PORTD -> *U + &U _passos * -> -> % _passoatual -> 4 `i `ui `ux -> -> # *U &U _passos `ui `ux `uc ]
+"27
+[; ;motorpasso.c: 27:         delay(t);
+[e ( _delay (1 -> _t `ui ]
+"28
+[; ;motorpasso.c: 28:     }
+}
+[e ++ _passoatual -> 1 `i ]
+[e :U 143 ]
+[e $ < _passoatual _numpassos 140  ]
+[e :U 141 ]
+}
+"29
+[; ;motorpasso.c: 29: }
+[e :UE 139 ]
 }
